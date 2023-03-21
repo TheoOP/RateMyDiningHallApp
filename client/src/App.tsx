@@ -81,7 +81,19 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is now {count}
         </button>
-        
+          <section id="whenSignedOut">
+
+          <button id="signInBtn">Sign in with Google</button>
+
+          </section>
+
+          <section id="whenSignedIn" hidden="hidden">
+
+          <div id="userDetails"></div>
+
+          <button id="signOutBtn">Sign Out</button>
+
+          </section>
         <button onClick={loginWithGoogle}>
           Login with Google
         </button>
