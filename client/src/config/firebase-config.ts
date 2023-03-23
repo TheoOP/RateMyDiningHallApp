@@ -2,6 +2,9 @@ import firebase from 'firebase/app';
 import "firebase/analytics";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getStorage, ref } from "firebase/storage";
+
+
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
 
