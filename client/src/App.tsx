@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import firebase from 'firebase/app'
-import 'firebase/auth'
 import './App.css'
 import './config/firebase-config';
 
@@ -9,42 +8,65 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChang
 import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
 import { doc, setDoc } from "firebase/firestore"; 
 
-// // Add a new document in collection "cities"
-// await setDoc(doc(db, "cities", "LA"), {
-//   name: "Los Angeles",
-//   state: "CA",
-//   country: "USA"
-// });
+import Tasks from "./components/Tasks";
 
 
 function App() {
   const [count, setCount] = useState(0);
+
+  const provider = new GoogleAuthProvider();
+
   const auth = getAuth();
-  async function loginWithGoogle() { //signs in userinto app through google
-    var provider = new GoogleAuthProvider();
-    await signInWithPopup(auth, provider);
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  const TorF : Boolean = false;
+
+
+  const [authorizedUser,setAuthorizedUser] = useState(TorF || sessionStorage.getItem("accessToken"));
+
+
+  async function signInwithGoogle() { 
+    await signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      // Access token of user
+      const token = credential?.accessToken; //questionmark checks if credential is null
+      console.log("TOKEN IS");
+      console.log(token);
+      
+      // The signed-in user info.
+      const user = result.user;
+      if(user){
+        user.getIdToken().then((tkn)=>{
+          // set access token in session storage
+          sessionStorage.setItem("accessToken", tkn);
+          setAuthorizedUser(true);
+        })
+      }
+      console.log(user);
+
+   }).catch((error) => {
+     // Handle Errors here.
+     const errorCode = error.code;
+     const errorMessage = error.message;
+     // The email of the user's account used.
+     const email = error.customData.email;
+     // The AuthCredential type that was used.
+     const credential = GoogleAuthProvider.credentialFromError(error);
+   });
   }
 
-  // async function saveMessage(messageText) {
-  //   // Add a new message entry to the Firebase database.
-  //   try {
-  //     await addDoc(collection(getFirestore(), 'messages'), {
-  //       name: getUserName(),
-  //       text: messageText,
-  //       profilePicUrl: getProfilePicUrl(),
-  //       timestamp: serverTimestamp()
-  //     });
-  //   }
-  //   catch(error) {
-  //     console.error('Error writing new message to Firebase Database', error);
-  //   }
-  // }
-
-
-  
   function logOutGoogle() {
     // Sign out of Firebase.
-    signOut(auth);
+    signOut(auth).then(() => {      
+      // clear session storage
+      sessionStorage.clear();
+      setAuthorizedUser(false);
+      // window.location.replace("/");
+      alert('Logged Out Successfully');
+    }).catch((error) => {
+      // An error happened.
+      alert(error);
+    });
   }
   
   onAuthStateChanged(auth, user=>{
@@ -60,12 +82,6 @@ function App() {
     
   }
   
-
-  // const provider = new GoogleAuthProvider();
-  // const loginWithGoogle = () => signInWithPopup(getAuth(),provider);
-  // console.log(loginWithGoogle);
-  // console.log(provider);
-  // console.log("HELLO");
   return (
     <div className="App">
       <div>
@@ -81,25 +97,15 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is now {count}
         </button>
-          <section id="whenSignedOut">
-
-          <button id="signInBtn">Sign in with Google</button>
-
-          </section>
-
-          <section id="whenSignedIn" hidden="hidden">
-
-          <div id="userDetails"></div>
-
-          <button id="signOutBtn">Sign Out</button>
-
-          </section>
-        <button onClick={loginWithGoogle}>
-          Login with Google
-        </button>
-        <button onClick={logOutGoogle}>
-          Logout
-        </button>
+            {authorizedUser ? (
+            <><p>Authorized user</p><h1>Tasks</h1>
+              <Tasks token={sessionStorage.getItem("accessToken")}/>
+              <button onClick={logOutGoogle}>Logout Button</button></>
+          ): (<><button onClick={signInwithGoogle}>SignWithGoogle</button></>)}
+        {/* displays sign in and sign out buttons */}
+        
+        
+        
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR CHANGE
         </p>
@@ -112,3 +118,23 @@ function App() {
 }
 
 export default App
+// // Add a new document in collection "cities"
+// await setDoc(doc(db, "cities", "LA"), {
+//   name: "Los Angeles",
+//   state: "CA",
+//   country: "USA"
+// });
+// async function saveMessage(messageText) {
+//   // Add a new message entry to the Firebase database.
+//   try {
+//     await addDoc(collection(getFirestore(), 'messages'), {
+//       name: getUserName(),
+//       text: messageText,
+//       profilePicUrl: getProfilePicUrl(),
+//       timestamp: serverTimestamp()
+//     });
+//   }
+//   catch(error) {
+//     console.error('Error writing new message to Firebase Database', error);
+//   }
+// }
