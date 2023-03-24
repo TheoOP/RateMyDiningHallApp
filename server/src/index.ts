@@ -76,7 +76,6 @@ app.get( '/h', (req: Request, res: Response) => {	//testing redirect
 app.get( "/TestHome", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname + "../../../client/src/index.html"));
 });
-
 // app.get( "/reviewCumnock", (req: Request, res: Response) => {
 //     res.sendFile('./pages/reviewCumnock.tsx', { root: __dirname });
 // });
