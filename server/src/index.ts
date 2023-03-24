@@ -30,8 +30,6 @@ app.use(express.static("public"));
 app.get('/',(req,res) => {
     res.send('Hello World');
 });
-
-
 app.get('/api/tasks', (req, res) => {
 
 	return res.json({
