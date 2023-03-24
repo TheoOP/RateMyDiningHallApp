@@ -11,6 +11,7 @@ class Middleware {
 			if (decodeValue) {
 				console.log("DECODE VAL IS");
                 console.log(decodeValue);
+				req.user = decodeValue;
 				return next();
 			}
 			return res.json({ message: 'Unauthorized' });

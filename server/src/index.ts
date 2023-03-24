@@ -58,17 +58,17 @@ app.listen(PORT, () => {
 //     res.send('Test World!');
 // });
 
-// app.get( "/account", (req: Request, res: Response) => {
-//     res.sendFile('./pages/account.tsx', { root: __dirname });
-// });
+app.get( "/account", (req: Request, res: Response) => {
+    res.sendFile('./pages/account.tsx', { root: __dirname });
+});
 
-// app.get( "/home", (req: Request, res: Response) => {
-//     res.sendFile('./pages/home.tsx', { root: __dirname });
-// });
+app.get( "/home", (req: Request, res: Response) => {
+    res.sendFile('./pages/home.tsx', { root: __dirname });
+});
 
-// app.get( '/', (req: Request, res: Response) => {
-//     res.redirect('/home');
-// });
+app.get( '/', (req: Request, res: Response) => {
+    res.redirect('/home');
+});
 
 
 // app.get( "/review", (req: Request, res: Response) => {
