@@ -1,4 +1,4 @@
-import express , {Request, Response} from "express";
+import express , {NextFunction, Request, Response} from "express";
 
 
 const PORT = 5200; //localhost port number
@@ -9,7 +9,9 @@ const cors = require('cors');
 
 
 app.use(cors());
-app.use(middleware.decodeToken);
+app.use(express.static("public"));
+
+// app.use(middleware.decodeToken);
 
 // app.use((req,res) => {
 // 	const token = req.?headers.authorization.split(' ')[1];
@@ -49,7 +51,7 @@ app.listen(PORT, () => {
 	console.log(`server is running on port ${PORT}`);
 });
 
-
+var path = require('path');
 
 // //basic routing for pages involved in the app
 // //following functions listens to requests
@@ -59,21 +61,23 @@ app.listen(PORT, () => {
 // });
 
 app.get( "/account", (req: Request, res: Response) => {
-    res.sendFile('./pages/account.tsx', { root: __dirname });
+    // res.sendFile('./pages/account.tsx', { root: __dirname });
+	res.sendFile(path.join(__dirname + "../../../client/public/pages/Account.tsx"));
 });
 
 app.get( "/home", (req: Request, res: Response) => {
-    res.sendFile('./pages/home.tsx', { root: __dirname });
+    // res.sendFile('Home.tsx', { root:'./pages'});
+	res.sendFile(path.join(__dirname + "../../../client/public/static/home.html"));
 });
 
-app.get( '/', (req: Request, res: Response) => {
+app.get( '/h', (req: Request, res: Response) => {	//testing redirect
     res.redirect('/home');
 });
 
 
-// app.get( "/review", (req: Request, res: Response) => {
-//     res.sendFile('./pages/review.tsx', { root: __dirname });
-// });
+app.get( "/TestHome", (req: Request, res: Response) => {
+    res.sendFile(path.join(__dirname + "../../../client/src/index.html"));
+});
 
 // app.get( "/reviewCumnock", (req: Request, res: Response) => {
 //     res.sendFile('./pages/reviewCumnock.tsx', { root: __dirname });
@@ -90,6 +94,12 @@ app.get( '/', (req: Request, res: Response) => {
 // app.get( "/repagesouth", (req: Request, res: Response) => {
 //     res.sendFile('./pages/map.tsx', { root: __dirname });
 // });
-// app.use((req, res) => {
-//   res.status(404).sendFile('./pages/Error404.tsx', { root: __dirname });
-// })
+
+
+
+app.use((req, res) => {
+	
+	// res.sendFile(path.resolve('../pages/Error404.tsx'));
+  	// res.status(404).sendFile('Error404.tsx',  { root:'./pages'});
+	  res.status(404).sendFile(path.join(__dirname + "../../../client/public/pages/Error404.tsx"));
+})

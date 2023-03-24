@@ -8,7 +8,7 @@ import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChang
 import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
 import { doc, setDoc } from "firebase/firestore"; 
 
-import Tasks from "./components/Tasks";
+import Tasks from "../public/components/Tasks";
 
 
 function App() {
