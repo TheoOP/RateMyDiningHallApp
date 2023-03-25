@@ -58,12 +58,14 @@ var path = require('path');
 // app.get( "/test", (req: Request, res: Response) => {
 //     res.send('Test World!');
 // });
-
+/*
 app.get( "/account", (req: Request, res: Response) => {
     // res.sendFile('./pages/account.tsx', { root: __dirname });
 	res.sendFile(path.join(__dirname + "../../../client/public/pages/Account.tsx"));
 });
+*/
 
+//Home middleware support
 app.get( "/home", (req: Request, res: Response) => {
     // res.sendFile('Home.tsx', { root:'./pages'});
 	res.sendFile(path.join(__dirname + "../../../client/public/static/home.html"));
@@ -79,10 +81,67 @@ app.get( '/h', (req: Request, res: Response) => {	//testing redirect
     res.redirect('/home');
 });
 
+//Review location middleware support
+app.get( "/reviewCumnock", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/reviewCumnock.html"));
+ });
+ app.get("/cssCumnockReview.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssCumnockReview.css"));
+});
 
+ app.get( "/reviewICC", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/reviewICC.html"));
+ });
+ app.get("/cssICCReview.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssICCReview.css"));
+});
+
+ app.get( "/reviewFox", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/reviewFox.html"));
+ });
+ app.get("/cssFoxReview.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssFoxReview.css"));
+});
+
+ app.get( "/reviewsouth", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/reviewSouth.html"));
+ });
+ app.get("/cssSouthReview.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssSouthReview.css"));
+});
+
+
+//middleware account page support
+app.get( "/account", (req: Request, res: Response) => {
+    // res.sendFile('./pages/account.tsx', { root: __dirname });
+	res.sendFile(path.join(__dirname + "../../../client/public/static/account.html"));
+});
+app.get("/cssAccount.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssAccount.css"));
+});
+
+//middleware write review support
+app.get( "/createReview", (req: Request, res: Response) => {
+    // res.sendFile('./pages/account.tsx', { root: __dirname });
+	res.sendFile(path.join(__dirname + "../../../client/public/static/review.html"));
+});
+app.get("/cssReview.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssReview.css"));
+});
+
+//middleware map support
+app.get( "/map", (req: Request, res: Response) => {
+    // res.sendFile('./pages/account.tsx', { root: __dirname });
+	res.sendFile(path.join(__dirname + "../../../client/public/static/map.html"));
+});
+app.get("/cssMap.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssMap.css"));
+});
+/* I Believe these are all .tsx file implementations of the middleware commented out for future use -Ethan
 app.get( "/TestHome", (req: Request, res: Response) => {
     res.sendFile(path.join(__dirname + "../../../client/src/index.html"));
 });
+*/
 // app.get( "/reviewCumnock", (req: Request, res: Response) => {
 //     res.sendFile('./pages/reviewCumnock.tsx', { root: __dirname });
 // });
