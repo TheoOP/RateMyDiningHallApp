@@ -13,6 +13,7 @@ app.use(express.static("public"));
 
 // app.use(middleware.decodeToken);
 
+
 // app.use((req,res) => {
 // 	const token = req.?headers.authorization.split(' ')[1];
 // 		try {
@@ -66,6 +67,12 @@ app.get( "/account", (req: Request, res: Response) => {
 app.get( "/home", (req: Request, res: Response) => {
     // res.sendFile('Home.tsx', { root:'./pages'});
 	res.sendFile(path.join(__dirname + "../../../client/public/static/home.html"));
+});
+app.get("/cssHome.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssHome.css"));
+});
+app.get("/ucrossing.png", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/ucrossing.png"));
 });
 
 app.get( '/h', (req: Request, res: Response) => {	//testing redirect
