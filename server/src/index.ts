@@ -120,6 +120,14 @@ app.get("/cssAccount.css", (req: Request, res: Response) => {
 	res.sendFile(path.join(__dirname + "../../../client/public/static/cssAccount.css"));
 });
 
+app.get( "/createAccount", (req: Request, res: Response) => {
+    // res.sendFile('./pages/account.tsx', { root: __dirname });
+	res.sendFile(path.join(__dirname + "../../../client/public/static/createAccount.html"));
+});
+app.get("/cssCreateAccount.css", (req: Request, res: Response) => {
+	res.sendFile(path.join(__dirname + "../../../client/public/static/cssCreateAccount.css"));
+});
+
 //middleware write review support
 app.get( "/createReview", (req: Request, res: Response) => {
     // res.sendFile('./pages/account.tsx', { root: __dirname });
