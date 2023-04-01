@@ -33,6 +33,15 @@ const Navbar = () => {
               >
                 Leave a Review
               </NavLink>
+              
+              <NavLink 
+                to="/Map"
+                className={isActive =>
+                  "nav-link" + (!isActive ? " unselected" : "")
+                }
+              >
+                Map
+              </NavLink>
 
               <NavLink 
                 to="/Account"
@@ -43,14 +52,7 @@ const Navbar = () => {
                 Account
               </NavLink>
 
-              <NavLink 
-                to="/Map"
-                className={isActive =>
-                  "nav-link" + (!isActive ? " unselected" : "")
-                }
-              >
-                Map
-              </NavLink>
+
 
             </div>
           </div>      

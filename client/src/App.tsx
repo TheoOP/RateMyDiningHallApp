@@ -116,7 +116,7 @@ function App() {
           <Route path="/Review" element={<Review />} />
 
         </Routes>
-        </div>
+        
        
         <div className="card">
               {authorizedUser ? (
@@ -130,6 +130,7 @@ function App() {
         <div className="container mt-2" style={{ marginTop: 40 }}>
         <Navbar />
 
+      </div>
       </div>
     </BrowserRouter>
 
