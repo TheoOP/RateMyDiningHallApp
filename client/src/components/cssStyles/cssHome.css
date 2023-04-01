@@ -21,7 +21,7 @@ body, html, head {
 h1 {
   color: black;
   background-color: grey;
-  text-align: middle;
+  text-align: center;
   font-size: 50px;
 
   margin: auto;
