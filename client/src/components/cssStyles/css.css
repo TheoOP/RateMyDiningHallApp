@@ -8,12 +8,12 @@ body, html, head {
 }
 
 .content {
+    background-image:url("ucrossing.png");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-    margin: auto;
     
 }
 h1 {
@@ -21,8 +21,8 @@ h1 {
     background-color: grey;
     text-align: middle;
     font-size: 50px;
-  
-    margin: auto;
+    padding-left: 150px;
+    margin: 0px;
     padding-top: 30px;
     padding-bottom: 20px;
     height: 90px;
@@ -62,50 +62,45 @@ h1 {
     color: white;
   }
 
-  /*Main Page Links to view reviews page*/
+  /*Review Page*/
 
-  .review1{
-    background-color: blue;
-    width: 50%;
-    height: 50px;
-    border: 1px solid black;
-    opacity: 0.8;
-    margin: auto;
-    padding: 15px;
-   
+  .dropbtn {
+    background-color: #04AA6D;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .drop1, .drop2 {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .drop1-options, .drop2-options {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .drop1-options a, .drop2-options a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .drop1-options a:hover {background-color: #ddd;}
+  
+  .drop1:hover .drop1-options {display: block;}
+  
+  .drop1:hover .dropbtn {background-color: #3e8e41;}
 
-  }
-  .review2{
-    background-color: green;
-    border: 1px solid white;
-    overflow: hidden;
-    width: 50%;
-    height: 50px;
-    opacity: 0.8;
-    margin: auto;
-    padding: 15px;
-    
-  }
-  .review3{
-   
-    background-color: Pink;
-    border: 1px solid white;
-    overflow: hidden;
-    width: 50%;
-    height: 50px;
-    opacity: 0.8;
-    margin: auto;
-    padding: 15px;
-  }
-  .review4{
-    background-color: orange;
-    border: 1px solid white;
-    overflow: hidden;
-    width: 50%;
-    height: 50px;
-    opacity: 0.8;
-    margin: auto;
-    padding: 15px;
-  }
-
- 
+  .drop2-options a:hover {background-color: #ddd;}
+  
+  .drop2:hover .drop1-options {display: block;}
+  
+  .drop2:hover .dropbtn {background-color: #3e8e41;}

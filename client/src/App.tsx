@@ -1,14 +1,28 @@
 import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import firebase from 'firebase/app'
-import './App.css'
+// import './App.css'
+import './components/cssStyles/css.css'
+
 import './config/firebase-config';
+import Home from "./components/Home"
 
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
 import { doc, setDoc } from "firebase/firestore"; 
 
-import Tasks from "../public/components/Tasks";
+import Tasks from "./components/Tasks";
+import Navbar from './components/Navbar';
+import Account from './components/Account';
+import Review from './components/Review';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CreateAccount from './components/CreateAccount';
+import Map from './components/Map';
+import ReviewCumnock from './components/ReviewCumnock';
+import $ from 'jquery';
+import ReviewFox from './components/ReviewFox';
+import ReviewICC from './components/ReviewICC';
+import ReviewSouth from './components/ReviewSouth';
 
 
 function App() {
@@ -83,37 +97,41 @@ function App() {
   }
   
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <BrowserRouter>
+      <div className="App">
+        <div className="container mt-2" style={{ marginTop: 40 }}>
+        <Routes>
+          
+          <Route path="/Home" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/Account" element={<Account />} />
+          <Route path="/CreateAccount" element={<CreateAccount />} />
+          <Route path="/Map" element={<Map />} />
+          <Route path="/ReviewCumnock" element={<ReviewCumnock />} />
+          <Route path="/ReviewFox" element={<ReviewFox />} />
+          <Route path="/ReviewICC" element={<ReviewICC />} />
+          <Route path="/ReviewSouth" element={<ReviewSouth />} />
+
+
+          <Route path="/Review" element={<Review />} />
+
+        </Routes>
+        </div>
+       
+        <div className="card">
+              {authorizedUser ? (
+              <><p>Authorized user</p><h1>Tasks</h1>
+                <Tasks token={sessionStorage.getItem("accessToken")}/>
+                <button onClick={logOutGoogle}>Logout Button</button></>
+            ): (<><button onClick={signInwithGoogle}>SignWithGoogle</button></>)}
+          {/* displays sign in and sign out buttons */}
+          
+        </div>
+        <Navbar />
+
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is now {count}
-        </button>
-            {authorizedUser ? (
-            <><p>Authorized user</p><h1>Tasks</h1>
-              <Tasks token={sessionStorage.getItem("accessToken")}/>
-              <button onClick={logOutGoogle}>Logout Button</button></>
-          ): (<><button onClick={signInwithGoogle}>SignWithGoogle</button></>)}
-        {/* displays sign in and sign out buttons */}
-        
-        
-        
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR CHANGE
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    </BrowserRouter>
+
   )
 }
 

@@ -8,21 +8,19 @@ body, html, head {
 }
 
 .content {
-    background-image:url("ucrossing.png");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
     margin: auto;
-    
+    margin-bottom: 250px;
 }
 h1 {
   color: black;
   background-color: grey;
   text-align: middle;
   font-size: 50px;
-
   margin: auto;
   padding-top: 30px;
   padding-bottom: 20px;
@@ -36,7 +34,6 @@ h1 {
     bottom: 0;
     width: 100%;
     object-fit: contain;
-    
   }
   
 
@@ -51,6 +48,7 @@ h1 {
     text-decoration: none;
     font-size: 30px;
   }
+
   .menu a:hover {
     background-color: #ddd;
     color: black;
@@ -109,3 +107,115 @@ h1 {
   }
 
  
+
+/*Cliff's additions */
+.reviewBody{
+    width: 75%;     
+    margin: auto;   
+}
+
+.reviewPost{
+    background-color: whitesmoke;
+    text-align: left;
+    padding: 10px 40px 10px 40px;
+    margin-bottom: 75px;
+}
+
+
+
+.highlight {
+    color: orange;
+    
+  }
+
+
+
+  .upvote input[type="checkbox"],
+.upvote .checked {
+    display: none;
+}
+ 
+.upvote input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+ 
+.upvote input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
+.downvote input[type="checkbox"],
+.downvote .checked {
+    display: none;
+}
+ 
+.downvote input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+ 
+.downvote input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
+.upvote{
+  margin-right:50px;
+  margin-left: 10px;
+}
+
+.downvote{
+  margin-left: 10px;
+}
+
+.expandDetails input[type="checkbox"],
+.expandDetails .checked {
+    display: none;
+}
+ 
+.expandDetails input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+ 
+.expandDetails input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
+.expandDetails{
+    float:right;
+    text-align:right;
+}
+
+
+.expandComments input[type="checkbox"],
+.expandComments .checked {
+    display: none;
+}
+ 
+.expandComments input[type="checkbox"]:checked ~ .checked
+{
+    display: inline-block;
+}
+ 
+.expandComments input[type="checkbox"]:checked ~ .unchecked
+{
+    display: none;
+}
+
+.comments{
+    margin-top: 15px;;
+    
+}
+
+.expandCommentsHeader{
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.numVotes{
+    margin-top: -10px;;
+    font-size:36px;
+}

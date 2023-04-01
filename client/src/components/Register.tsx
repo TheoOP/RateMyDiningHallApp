@@ -3,7 +3,7 @@ import Add from "../img/addAvatar.png";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 
@@ -12,16 +12,13 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
   
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: any) => {
         setLoading(true);
         e.preventDefault();
         const displayName = e.target[0].value;
         const email = e.target[1].value;
         const password = e.target[2].value;
         const file = e.target[3].files[0];
-
-
-
 
     }
 

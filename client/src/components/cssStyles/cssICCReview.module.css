@@ -8,6 +8,7 @@ body, html, head {
 }
 
 .content {
+    background-image:url("ucrossing.png");
     height: 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -17,15 +18,15 @@ body, html, head {
     
 }
 h1 {
-    color: black;
-    background-color: grey;
-    text-align: middle;
-    font-size: 50px;
-  
-    margin: auto;
-    padding-top: 30px;
-    padding-bottom: 20px;
-    height: 90px;
+  color: black;
+  background-color: grey;
+  text-align: middle;
+  font-size: 50px;
+
+  margin: auto;
+  padding-top: 30px;
+  padding-bottom: 20px;
+  height: 90px;
 }
 
 .menu {
