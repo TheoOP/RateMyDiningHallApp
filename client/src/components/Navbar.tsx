@@ -24,7 +24,6 @@ const Navbar = () => {
               >
                 Home
               </NavLink>
-                <br />
                 
               <NavLink 
                 to="/Review"
@@ -34,7 +33,7 @@ const Navbar = () => {
               >
                 Leave a Review
               </NavLink>
-              <br />
+
               <NavLink 
                 to="/Account"
                 className={isActive =>
@@ -43,7 +42,6 @@ const Navbar = () => {
               >
                 Account
               </NavLink>
-              <br />
 
               <NavLink 
                 to="/Map"
@@ -53,7 +51,6 @@ const Navbar = () => {
               >
                 Map
               </NavLink>
-              <br />
 
             </div>
           </div>      

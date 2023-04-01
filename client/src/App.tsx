@@ -99,7 +99,7 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <div className="container mt-2" style={{ marginTop: 40 }}>
+
         <Routes>
           
           <Route path="/Home" element={<Home />} />
@@ -120,13 +120,14 @@ function App() {
        
         <div className="card">
               {authorizedUser ? (
-              <><p>Authorized user</p><h1>Tasks</h1>
-                <Tasks token={sessionStorage.getItem("accessToken")}/>
+              <><p>Authorized user</p>
+              
                 <button onClick={logOutGoogle}>Logout Button</button></>
             ): (<><button onClick={signInwithGoogle}>SignWithGoogle</button></>)}
           {/* displays sign in and sign out buttons */}
           
         </div>
+        <div className="container mt-2" style={{ marginTop: 40 }}>
         <Navbar />
 
       </div>
