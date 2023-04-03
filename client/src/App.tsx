@@ -3,6 +3,7 @@ import reactLogo from './assets/react.svg'
 import firebase from 'firebase/app'
 // import './App.css'
 import './components/cssStyles/css.css'
+import HomeV2 from "./components/HomeV2"
 
 import './config/firebase-config';
 import Home from "./components/Home"
@@ -23,6 +24,7 @@ import $ from 'jquery';
 import ReviewFox from './components/ReviewFox';
 import ReviewICC from './components/ReviewICC';
 import ReviewSouth from './components/ReviewSouth';
+import PrimarySearchAppBar from './components/SearchBar'
 
 
 function App() {
@@ -103,6 +105,7 @@ function App() {
         <Routes>
           
           <Route path="/Home" element={<Home />} />
+          <Route path="/HomeV2" element={<HomeV2 />} />
           <Route path="/" element={<Home />} />
           <Route path="/Account" element={<Account />} />
           <Route path="/CreateAccount" element={<CreateAccount />} />
@@ -116,7 +119,6 @@ function App() {
           <Route path="/Review" element={<Review />} />
 
         </Routes>
-        
        
         <div className="card">
               {authorizedUser ? (

@@ -1,0 +1,22 @@
+
+.TopRatedCardContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.TopRatedCardImage{
+    width: 600px;
+    border-radius: 20px;
+}
+
+.TopRatedCardTitle{
+    font-size: 30px;
+}
+
+.TopRatedCardSubText{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
