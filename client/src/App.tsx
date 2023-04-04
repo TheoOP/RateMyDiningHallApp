@@ -2,11 +2,12 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import firebase from 'firebase/app'
 // import './App.css'
-import './components/cssStyles/css.css'
-import HomeV2 from "./components/HomeV2"
+import './components/cssStyles/cssHome.css'
+
 
 import './config/firebase-config';
 import Home from "./components/Home"
+import HomeV2 from "./components/HomeV2"
 
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'

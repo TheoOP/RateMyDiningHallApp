@@ -6,11 +6,15 @@ import UmlLogoIcon from '../assets/UmlLogoIcon.svg'
 import LocationPin from '../assets/LocationPin.svg'
 import PrimarySearchAppBar from './SearchBar'
 import TopRatedCard from './TopRatedCard'
-import FoxHall from '../assets/FoxDiningHall.png'
+import FoxHallImg from '../assets/FoxDiningHall.png'
+import CumnockImg from '../assets/CumnockMarketPlace.png'
+import ICCDiningImg from '../assets/ICCDining.png'
+import SouthCampusImg from '../assets/SouthCampusDining.jpg'
+
+import DiningHallCard from './DiningHallCard'
 
 const HomeV2 = () => {
   return (
-    <div>
 
       <div className="content">
         <h1>      
@@ -19,64 +23,60 @@ const HomeV2 = () => {
         
         <PrimarySearchAppBar />
         <br /><br />
-        
-        
+                
         <h2 className='TopRatedHeader'>Top Rated Today</h2>
         <TopRatedCard 
-        image = {FoxHall} 
-        height = {300}
+        image = {FoxHallImg} 
+        // height = {300}
         name =  "Fox Dining Commons"
         rating = {4.5}
         ratingCount = {137}
         location = "East Campus"
         />
         
-        
-        
-        <div className="box1">
-          <Link to='/reviewFox'>
-            <div className="review1">
-              <p>Fox Dining Commons Reviews</p>
-            </div>
-          </Link>
-       
-        </div>
-        <br />
-        <div className="box2">
-          <Link to='/reviewSouth'>
-            <div className="review2">
-              <p>South Campus Dining Reviews</p>
-            </div>
-          </Link>
-        
-        </div>
-        <br />
-        <div className="box3">
-          <Link to='/reviewICC'>
-            <div className="review3">
-              <p>ICC Dining Reviews</p>
-            </div>
-          </Link>
-        </div>
-        <br />
-        <div className="box4"> 
-        <Link to='/reviewCumnock'>
-            <div className="review4">
-              <p>Cumnock Hall Reviews</p>
-            </div>
-        </Link>
+        <h2 className='NearbyDiningHallsHeader'>Nearby Dining Halls</h2>
 
-        </div>
+        <DiningHallCard 
+        image = {CumnockImg} 
+        // height = {300}
+        name =  "Cumnock Marketplace"
+        rating = {4.3}
+        ratingCount = {65}
+        location = "North Campus"
+        />
+         
+        <DiningHallCard 
+        image = {ICCDiningImg} 
+        // height = {300}
+        name =  "Inn & Conference Dining"
+        rating = {4.1}
+        ratingCount = {42}
+        location = "Downtown Lowell"
+        />
+
+        <DiningHallCard 
+        image = {SouthCampusImg} 
+        // height = {300}
+        name =  "South Campus Dining Commmons"
+        rating = {4.3}
+        ratingCount = {99}
+        location = "Downtown Lowell"
+        />
+        <br />
+        <br />
+        <br />
+        <br />
+
       </div>
 
-      {/* <div className="menu">
-          <a href="home.html" className="active">Home</a>
-          <a href="review.html">Leave a Review</a>
-          <a href="map.html">Map View</a>
-          <a href="account.html">Account</a>
-        </div> */}
+      // <div className="menu">
+      //     <a href="home.html" className="active">Home</a>
+      //     <a href="review.html">Leave a Review</a>
+      //     <a href="map.html">Map View</a>
+      //     <a href="account.html">Account</a>
+      //   </div> 
 
-</div>
+
   )
 }
 
