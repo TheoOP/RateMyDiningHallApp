@@ -22,8 +22,8 @@ const HomeV2 = () => {
         <img className='HeaderIcon' src={UmlLogoIcon} height={45} alt="Uml Logo Icon" /> UMass Lowell</h1>
         
         <PrimarySearchAppBar />
-        <br /><br />
-                
+        <br />
+      <div className='mainBody'>    
         <h2 className='TopRatedHeader'>Top Rated Today</h2>
         <TopRatedCard 
         image = {FoxHallImg} 
@@ -44,7 +44,9 @@ const HomeV2 = () => {
         ratingCount = {65}
         location = "North Campus"
         />
-         
+        <br />
+        <br />
+
         <DiningHallCard 
         image = {ICCDiningImg} 
         // height = {300}
@@ -53,6 +55,8 @@ const HomeV2 = () => {
         ratingCount = {42}
         location = "Downtown Lowell"
         />
+        <br />
+        <br />
 
         <DiningHallCard 
         image = {SouthCampusImg} 
@@ -66,7 +70,11 @@ const HomeV2 = () => {
         <br />
         <br />
         <br />
-
+        <br />
+        <br />
+        <br />
+        <br />
+        </div>   
       </div>
 
       // <div className="menu">

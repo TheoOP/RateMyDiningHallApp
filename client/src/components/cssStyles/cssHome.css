@@ -43,8 +43,10 @@ h1 {
   padding-bottom: 20px;
   height: 90px;
 }
-h2{
+.NearbyDiningHallsHeader, .TopRatedHeader{
   text-align: center;
+  text-align: match-parent;
+  margin: 0;
 }
 
 .menu {

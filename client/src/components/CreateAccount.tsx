@@ -1,7 +1,77 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./cssStyles/cssCreateAccount.module.css"
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from '@firebase/auth';
 
 const CreateAccount = () => {
+  const [count, setCount] = useState(0);
+
+  const provider = new GoogleAuthProvider();
+
+  const auth = getAuth();
+  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+  const TorF : Boolean = false;
+
+
+  const [authorizedUser,setAuthorizedUser] = useState(TorF || sessionStorage.getItem("accessToken"));
+
+
+  async function signInwithGoogle() { 
+    await signInWithPopup(auth, provider)
+    .then((result) => {
+      const credential = GoogleAuthProvider.credentialFromResult(result);
+      // Access token of user
+      const token = credential?.accessToken; //questionmark checks if credential is null
+      console.log("TOKEN IS");
+      console.log(token);
+      
+      // The signed-in user info.
+      const user = result.user;
+      if(user){
+        user.getIdToken().then((tkn)=>{
+          // set access token in session storage
+          sessionStorage.setItem("accessToken", tkn);
+          setAuthorizedUser(true);
+        })
+      }
+      console.log(user);
+
+   }).catch((error) => {
+     // Handle Errors here.
+     const errorCode = error.code;
+     const errorMessage = error.message;
+     // The email of the user's account used.
+     const email = error.customData.email;
+     // The AuthCredential type that was used.
+     const credential = GoogleAuthProvider.credentialFromError(error);
+   });
+  }
+
+  function logOutGoogle() {
+    // Sign out of Firebase.
+    signOut(auth).then(() => {      
+      // clear session storage
+      sessionStorage.clear();
+      setAuthorizedUser(false);
+      // window.location.replace("/");
+      alert('Logged Out Successfully');
+    }).catch((error) => {
+      // An error happened.
+      alert(error);
+    });
+  }
+  
+  onAuthStateChanged(auth, user=>{
+    console.log({user});
+    if(user != null){
+      // const userRef = collection(db, `cases/${user.uid}`);
+      // //send chat
+      // addDoc(userRef, {message: "Test: Sending Message to DB!"});
+    }
+  })
+
+
+
+
   return (
     <div>
         <div>
@@ -17,8 +87,20 @@ const CreateAccount = () => {
                 <input type="submit" defaultValue="Make Account" />
             </form>
             <br />
-            </div>
+            <div className="LogIn">
+              {authorizedUser ? (
+              <><p>Authorized user</p>
+              
+                <button onClick={logOutGoogle}>Logout Button</button></>
+              ): (<><button onClick={signInwithGoogle}>SignWithGoogle</button></>)}
+              {/* displays sign in and sign out buttons */}
+          
         </div>
+            
+            </div>
+        
+        </div>
+
         <div className="menu">
           {/*
             <a href="home.html" >Home</a>
