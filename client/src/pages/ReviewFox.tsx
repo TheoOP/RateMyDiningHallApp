@@ -1,161 +1,137 @@
-import React from 'react'
+import React, {useState} from 'react'
 import $ from 'jquery';
 import '../components/cssStyles/cssFoxReview.module.css'
-
-
-  
-
-$( document ).ready(function() {
-
-  function addReview(username: any, overallStars: any, tStars: any, qStars: any, sStars: any, reviewText: any, numUpvotes: any, numDownvotes: any, comments: any, postId: any){
-      var reviewAppend = '<div class="reviewPost"> ' +
-      '<h2 class="username">' + username + '</h2> ';
-      var i;       
-      for(i = 1; i <= 5; i++){
-          
-          if(i <= overallStars){
-               reviewAppend += '<span class="fa fa-star fa-2x highlight"></span>';
-          }
-          else{
-               reviewAppend += '<span class="fa fa-star fa-2x"></span>';
-          }       
-      }
-      
-       reviewAppend += '<h3 class="reviewText">' + reviewText + '</h3>' +
-      '<span class="numVotes" id="numUpvotes' + postId +'">' + numUpvotes + '</span>' +
-     '<label class="upvote">' +
-       '<input type="checkbox" name="upvoteCheck" class="upvoteCheckbox" id="upvote' + postId+ '">' +   
-        '<span class="far fa-arrow-alt-circle-up fa-2x unchecked"></span>' +
-         '<span class="fas fa-arrow-alt-circle-up fa-2x checked"></span>' +
-      '</label>' +
-      '<span class="numVotes"id="numDownvotes' + postId +'">' + numDownvotes + '</span>' +
-      '<label class="downvote">' +
-       '<input type="checkbox" name="downvoteCheck" class="downvoteCheckbox"id="downvote' + postId+ '">' +         
-        '<span class="far fa-arrow-alt-circle-down fa-2x unchecked"></span>' +
-         '<span class="fas fa-arrow-alt-circle-down fa-2x checked"></span>' +
-      '</label>' +
-
-      '<label class="expandDetails">' +
-          '<input type="checkbox" name="expandDetailsCheck" class="expandDetailsCheckbox" id="ED' + postId + '">' + 
-          'View more details&nbsp;&nbsp;' +       
-          '<span class="fas fa-angle-right unchecked"></span>' +
-          '<span class="fas fa-angle-down checked"></span>' +
-      '</label>' +
-      '<div id="EDDiv' + postId + '" hidden>' + 
-
-      //for loops for view more details, content gets placed in a hidden container
-      '<hr>Taste:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-      for(i = 1; i <= 5; i++){
-          
-          if(i <= tStars){
-               reviewAppend += '<span class="fa fa-star highlight"></span>';
-          }
-          else{
-               reviewAppend += '<span class="fa fa-star"></span>';
-          }          
-      }
-
-      reviewAppend += '<br>Quality:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'
-      for(i = 1; i <= 5; i++){
-          
-          if(i <= qStars){
-               reviewAppend += '<span class="fa fa-star highlight"></span>';
-          }
-          else{
-               reviewAppend += '<span class="fa fa-star"></span>';
-          }          
-      }
-
-      reviewAppend += '<br>Selection:&nbsp;&nbsp;&nbsp;'
-      for(i = 1; i <= 5; i++){
-          
-          if(i <= sStars){
-               reviewAppend += '<span class="fa fa-star highlight"></span>';
-          }
-          else{
-               reviewAppend += '<span class="fa fa-star"></span>';
-          }          
-      }
-      
-       reviewAppend += '<br><hr></div>' +
-
-      '<br>' +
-
-      '<div class="comments">' +
-      '<label class="expandComments">' +
-          '<input type="checkbox" name="expandDetailsCheck" class="expandDetailsCheckbox">' +  
-          '<span class="expandCommentsHeader">Expand comments&nbsp;&nbsp;</span>' +
-          '<span class="fas fa-angle-right unchecked"></span>' +
-          '<span class="fas fa-angle-down checked"></span>' +
-      '</label>' +
-  '</div>' +
-  '</div>';    
-
-      $('#reviewBody').append(reviewAppend);
-
-      //show if checked hide if not checked 
-      $('#ED'+postId).change(           
-          function(){
-              if ($(this).is(':checked')) {                       
-              $('#EDDiv'+postId).show();  
-  }
-  else{
-      $('#EDDiv'+postId).hide();       
-  }
-});
-
-$('#upvote'+postId).change(           
-  function(){
-      var temp = numUpvotes;
-
-      if ($(this).is(':checked')) {   
-      temp = temp + 1;       
-      if($('#downvote'+postId).is(":checked")){
-      $('#numDownvotes'+postId).html(numDownvotes);
-      $('#downvote'+postId).prop("checked", false); 
-      }               
-             
-           
-}
-      $('#numUpvotes'+postId).html(temp);
-});
-
-$('#downvote'+postId).change(           
-  function(){
-      var temp = numDownvotes;
-      if ($(this).is(':checked')) {    
-          temp = temp + 1;  
-           if($('#upvote'+postId).is(":checked")){
-              $('#numUpvotes'+postId).html(numUpvotes);
-              $('#upvote'+postId).prop("checked", false);    
-              }                                  
-}
-      $('#numDownvotes'+postId).html(temp);
-});
-
-}
-
-addReview('APPENDED1', 4, 1, 0, 5, 'the burger man was dfelivesa', 7, 3, 'erm', 1);
-  addReview('APPENDED2', 4, 1, 0, 5, 'the dog man was dfelivesa', 7, 3, 'erm', 2);
-  addReview('APPENDED3', 4, 1, 0, 5, 'the sand man was dfelivesa', 7, 3, 'erm', 3);
-  addReview('APPENDED1', 4, 1, 0, 5, 'the burger man was dfelivesa', 7, 3, 'erm', 4);
-  addReview('APPENDED2', 4, 1, 0, 5, 'the dog man was dfelivesa', 7, 3, 'erm', 5);
-  addReview('APPENDED3', 4, 1, 0, 5, 'the sand man was dfelivesa', 7, 3, 'erm', 6);
-});
-
+import '../components/cssStyles/reviewPage.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FaStar } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
+import { FaRegArrowAltCircleUp } from "react-icons/fa";
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import { FaRegArrowAltCircleDown } from "react-icons/fa";
+import { FaArrowAltCircleDown } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
 
 
 
 
 
 const ReviewFox = () => {
+
+  
+
+    function addReview(username: any, overallStars: any, tStars: any, qStars: any, sStars: any, reviewText: any, numUpvotes: any, numDownvotes: any, comments: any, postId: any){
+        var [upvoteChecked, upvoteSetChecked] = useState(false);   
+        const upvoteOnChange = () => {       
+          upvoteSetChecked(!upvoteChecked);    
+          if(!upvoteChecked){
+              downvoteSetChecked(false);
+          }
+        }; 
+  
+        var [downvoteChecked, downvoteSetChecked] = useState(false);   
+        const downvoteOnChange = () => {       
+          downvoteSetChecked(!downvoteChecked);    
+          if(!downvoteChecked){
+              upvoteSetChecked(false);
+          }
+        }; 
+  
+        var [viewDetailsChecked, viewDetailsSetChecked] = useState(false);   
+        const viewDetailsOnChange = () => {       
+          viewDetailsSetChecked(!viewDetailsChecked);    
+        }; 
+
+        var [commentsChecked, commentsSetChecked] = useState(false);   
+        const commentsOnChange = () => {       
+            commentsSetChecked(!commentsChecked);    
+        }; 
+  
+        const upId = 'upvote' + postId;
+        const downId = 'downvote' + postId;
+        const edId = 'ED' + postId;
+        const edDivId = 'EDDiv' + postId; 
+        return( 
+        <div className="reviewPost">  
+        <h2 className="username">{username}</h2>
+        {1 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
+        {2 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
+        {3 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
+        {4 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
+        {5 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
+           
+        
+        <h3 className="reviewText"> {reviewText} </h3>
+        <span className="numVotes" id="numUpvotes' + postId +'">   {upvoteChecked ? (numUpvotes + 1) : (numUpvotes)} </span>
+       <label className="upvote">
+         <input type="checkbox" name="upvoteCheck" className="upvoteCheckbox" id= {upId} onChange={upvoteOnChange}/>        
+         {upvoteChecked ? (<FaArrowAltCircleUp size={42} />) : (<FaRegArrowAltCircleUp size={42} />)}         
+        </label>
+        <span className="numVotes" id="numDownvotes' + postId +'">  {downvoteChecked ? (numDownvotes + 1) : (numDownvotes)}   </span>
+        <label className="downvote"> 
+        <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" id= {downId} onChange={downvoteOnChange}/>        
+        {downvoteChecked ? (<FaArrowAltCircleDown size={42} />) : (<FaRegArrowAltCircleDown size={42} />)}               
+        </label>
+  
+        <label className="expandDetails">
+        
+            <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" id= {edId} onChange={viewDetailsOnChange}/> 
+            View more details&nbsp;&nbsp;      
+            {viewDetailsChecked ? (<FaChevronDown/>) : (<FaChevronRight/>)}
+        </label>
+        
+        <div id= {edDivId} className={viewDetailsChecked ? ('show') : ('hide')}>
+        <hr/>Taste:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {1 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {2 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {3 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {4 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {5 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+           
+  
+        <br/>Quality:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        {1 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {2 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {3 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {4 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {5 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+           
+  
+        <br/>Selection:&nbsp;&nbsp;&nbsp;
+        {1 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {2 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {3 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {4 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+        {5 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
+           
+        
+         <br/><hr/></div>
+  
+        <br/>
+  
+        <div className="comments">
+        <label className="expandComments">
+            <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" onChange={commentsOnChange}/>
+            <span className="expandCommentsHeader">Expand comments&nbsp;&nbsp;</span>
+            {commentsChecked ? (<FaChevronDown/>) : (<FaChevronRight/>)}
+        </label>
+    </div>
+    </div>    
+        )
+
+  };
+
   return (
     <div>
         <div>
             <div className="content">
                 <h1>Fox Dining Commons Reviews</h1>
                 <div id="reviewBody" className="reviewBody" />
+                {addReview('APPENDED1', 4, 1, 0, 5, 'good food', 7, 3, 'erm', 1)}
+                {addReview('APPENDED2', 4, 1, 0, 5, 'mid food', 7, 3, 'erm', 2)}
+                {addReview('APPENDED3', 4, 1, 0, 5, 'bad food', 7, 3, 'erm', 3)}
             </div>
+            
             {/* This is here so the footer doesnt cover content */}
             {/* <div color:'transparent' font-size:'0px' height:20px>h</div> */}
             <div style={{color:'transparent', fontSize: 0, height: 20}} >h </div>
@@ -172,9 +148,12 @@ const ReviewFox = () => {
                 <a href="/account">Account</a>
             </div> */}
         </div>
-
+        
     </div>
   )
+  
 }
+
+
 
 export default ReviewFox
