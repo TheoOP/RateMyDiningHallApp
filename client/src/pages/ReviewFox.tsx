@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import $ from 'jquery';
 import '../components/cssStyles/cssFoxReview.module.css'
 import '../components/cssStyles/reviewPage.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
 import { FaRegArrowAltCircleUp } from "react-icons/fa";
