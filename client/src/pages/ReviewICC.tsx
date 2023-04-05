@@ -1,5 +1,5 @@
 import React from 'react'
-import './cssStyles/cssICCReview.module.css'
+import '../components/cssStyles/cssICCReview.module.css'
 
 
 const ReviewICC = () => {

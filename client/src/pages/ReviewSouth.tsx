@@ -1,5 +1,5 @@
 import React from 'react'
-import './cssStyles/cssSouthReview.module.css'
+import '../components/cssStyles/cssSouthReview.module.css'
 
 const ReviewSouth = () => {
   return (

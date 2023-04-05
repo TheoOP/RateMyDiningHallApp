@@ -1,0 +1,23 @@
+
+  /*Review Page*/
+label{
+font-size: 20px; 
+font-weight: 500;
+}
+.ReviewForm{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+
+}
+#commentTitle{
+  width: 400px;
+}
+
+#comment{
+  width: 400px;
+  height: 300px;
+  text-align: top;
+}

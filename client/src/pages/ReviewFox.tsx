@@ -1,6 +1,6 @@
 import React from 'react'
 import $ from 'jquery';
-import './cssStyles/cssFoxReview.module.css'
+import '../components/cssStyles/cssFoxReview.module.css'
 
 
   

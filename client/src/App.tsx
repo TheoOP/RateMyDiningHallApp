@@ -6,26 +6,25 @@ import './components/cssStyles/cssHome.css'
 
 
 import './config/firebase-config';
-import Home from "./components/Home"
-import HomeV2 from "./components/HomeV2"
+import Home from "./pages/Home"
+import HomeV2 from "./pages/HomeV2"
 
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
 import { doc, setDoc } from "firebase/firestore"; 
 
-import Tasks from "./components/Tasks";
 import Navbar from './components/Navbar';
-import Account from './components/Account';
-import Review from './components/Review';
+import Account from './pages/Account';
+import Review from './pages/Review';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import CreateAccount from './components/CreateAccount';
-import Map from './components/Map';
-import ReviewCumnock from './components/ReviewCumnock';
+import CreateAccount from './pages/CreateAccount';
+import Map from './pages/Map';
+import ReviewCumnock from './pages/ReviewCumnock';
 import $ from 'jquery';
-import ReviewFox from './components/ReviewFox';
-import ReviewICC from './components/ReviewICC';
-import ReviewSouth from './components/ReviewSouth';
-import PrimarySearchAppBar from './components/SearchBar'
+import ReviewFox from './pages/ReviewFox';
+import ReviewICC from './pages/ReviewICC';
+import ReviewSouth from './pages/ReviewSouth';
+import Error404 from './pages/Error404';
 
 
 function App() {
@@ -52,6 +51,7 @@ function App() {
           <Route path="/ReviewICC" element={<ReviewICC />} />
           <Route path="/ReviewSouth" element={<ReviewSouth />} />
           <Route path="/Review" element={<Review />} />
+          <Route path='*' element={<Error404 />} />
 
         </Routes>
        

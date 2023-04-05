@@ -1,5 +1,5 @@
 import React from 'react'
-import './cssStyles/cssCumnockReview.module.css'
+import '../components/cssStyles/cssCumnockReview.module.css'
 
 const ReviewCumnock = () => {
   return (

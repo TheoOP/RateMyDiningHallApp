@@ -6,4 +6,4 @@ const ReviewBody = () => {
   )
 }
 
-export default ReviewBody
+export default ReviewBody;

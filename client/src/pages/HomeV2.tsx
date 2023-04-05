@@ -1,17 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import './cssStyles/cssHome.css'
+import '../components/cssStyles/cssHome.css'
 import reactLogo from './assets/react.svg'
 import UmlLogoIcon from '../assets/UmlLogoIcon.svg'
 import LocationPin from '../assets/LocationPin.svg'
-import PrimarySearchAppBar from './SearchBar'
-import TopRatedCard from './TopRatedCard'
+import PrimarySearchAppBar from '../components/SearchBar'
+import TopRatedCard from '../components/TopRatedCard'
 import FoxHallImg from '../assets/FoxDiningHall.png'
 import CumnockImg from '../assets/CumnockMarketPlace.png'
 import ICCDiningImg from '../assets/ICCDining.png'
 import SouthCampusImg from '../assets/SouthCampusDining.jpg'
 
-import DiningHallCard from './DiningHallCard'
+import DiningHallCard from '../components/DiningHallCard'
 
 const HomeV2 = () => {
   return (

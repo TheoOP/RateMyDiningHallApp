@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import "./cssStyles/cssCreateAccount.module.css"
+import "../components/cssStyles/cssCreateAccount.module.css"
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from '@firebase/auth';
 
 const CreateAccount = () => {
