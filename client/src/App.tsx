@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import firebase from 'firebase/app'
-// import './App.css'
-import './components/cssStyles/cssHome.css'
-
-
-import './config/firebase-config';
+import React from 'react'
+import { useEffect, useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home"
-
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
-import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
-import { doc, setDoc } from "firebase/firestore"; 
-
 import Navbar from './components/Navbar';
 import Account from './pages/Account';
 import Review from './pages/Review';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CreateAccount from './pages/CreateAccount';
 import Map from './pages/Map';
 import ReviewCumnock from './pages/ReviewCumnock';
-import $ from 'jquery';
 import ReviewFox from './pages/ReviewFox';
 import ReviewICC from './pages/ReviewICC';
 import ReviewSouth from './pages/ReviewSouth';
 import Error404 from './pages/Error404';
 import Login from './pages/Login'
+import './config/firebase-config';
+
+// import './App.css'
+import './components/cssStyles/cssHome.css'
+
+import $ from 'jquery';
+
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
+import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
+import { doc, setDoc } from "firebase/firestore"; 
+
 
 function App() {
   const [isAuth, setIsAuth] = useState(false); 
+  const [isVisible, setIsVisible] = useState(isAuth);
+
+  useEffect(() => {
+    setIsVisible(isAuth);
+  }, [isAuth]);
 
   
+  // Toggle whatever the current value is
+  // setIsVisible(prevIsVisibleValue => !prevIsVisibleValue);
+  
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -37,7 +45,7 @@ function App() {
         <Routes>
           
           <Route path="/Home" element={<Home />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Login setIsAuth = {setIsAuth}  />} />
           <Route path="/Account" element={<Account setIsAuth = {setIsAuth} />} />
           <Route path="/Login" element={<Login setIsAuth = {setIsAuth} />} />
           <Route path="/CreateAccount" element={<CreateAccount />} />
@@ -51,10 +59,12 @@ function App() {
 
         </Routes>
        
-        {isAuth && 
-        <div className="container mt-2" style={{ marginTop: 40 }}>
-          <Navbar />
-        </div> }
+        {isVisible && (
+          <div className="container mt-2" style={{ marginTop: 40 }}>
+            <Navbar />
+          </div>
+        )}
+      
         
       </div>
     </BrowserRouter>
