@@ -12,6 +12,9 @@ cd server
 for both terminals use npm to install the necessary packages 
 type npm install in both terminals
 
+in client terminal type 
+npm install react-icons --save
+
 once packages are installed
 in both terminals type
 npm run dev
