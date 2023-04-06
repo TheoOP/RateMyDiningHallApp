@@ -5,7 +5,7 @@
 body, html, head {
     background-color: #0469B1;
     height: 100%;
-    min-height: 1300px;
+    min-height: 800px;
     margin: 0px;
     object-fit: contain;
     font-family:  'Inter', sans-serif;
@@ -83,62 +83,64 @@ h1 {
     color: white;
   }
 
-  /*Main Page Links to view reviews page*/
+.content {
+    height: 100%;
 
-  .box1{
-    background-color: grey;
-    width: 50%;
-    height: 200px;
-    border: 1px solid black;
-    opacity: 0.95;
-    margin: auto;
-    padding: 15px;
+}
+.mainBody{
+    height: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-  }
-  
-  .box2{
-    background-color: green;
-    border: 1px solid white;
-    overflow: hidden;
-    width: 50%;
-    height: 200px;
-    opacity: 0.95;
-    margin: auto;
-    padding: 15px;
+    flex-direction: column;
+}
+
+
+.TopRatedCardContainer, .DiningHallCardContainer{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    font-size: 40px;
-  }
-  .box3{
-   
-    background-color: Pink;
-    border: 1px solid white;
-    overflow: hidden;
-    width: 50%;
-    height: 200px;
-    opacity: 0.95;
-    margin: auto;
-    padding: 15px;
+    justify-content: center;
+    position: relative;
+    height: 60%;
+    font-weight: 400;
+}
+
+.TopRatedCardImage, .DiningHallCardImage{
+    width: 100%;
+    height: 90%;
+    border-radius: 20px;
+}
+
+.TopRatedCardImageLink, .DiningHallCardImageLink{
+    width: 45%;
+    height: 90%;
+    border-radius: 20px;  
+}
+.TopRatedCardTitle, .DiningHallCardTitle{
+    font-size: 45px;
+    font-weight: 500;
+}
+
+.TopRatedCardSubText, .DiningHallCardSubText{
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 40px;
-  }
-  .box4{
-    background-color: orange;
-    border: 1px solid white;
-    overflow: hidden;
-    width: 50%;
-    height: 200px;
-    opacity: 0.95;
-    margin: auto;
-    padding: 15px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 40px;
-  }
+    justify-content:left;
+    font-size: 20px;
+    margin-top: 2%;
+}
+
+.TopRatedCardText, .DiningHallCardText {
+    width: 38%;
+    position: absolute;
+    background-color: white;
+    border-radius: 8px;
+    top: 60%;
+    padding: 1%;
+    padding-right: 3%;
+    padding-left: 2%;
+    padding-bottom: 2%;
+}
+
+.TopRatedCardTitleLink, .DiningHallCardTitleLink{
+    text-decoration: none;
+    color: inherit;
+}

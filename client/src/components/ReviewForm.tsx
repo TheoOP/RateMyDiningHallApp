@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-import "../components/cssStyles/cssReview.css"
+import { Rating } from '@mui/material';
 
 enum LocationsEnum {
     Fox = "Fox Dining Commons",
@@ -50,6 +50,16 @@ export default function ReviewForm() {
       </select>
       <br />
       <label>Overall Rating</label>
+      <Rating
+        sx={{
+          "& .MuiRating-iconFilled": {
+            color: "#1769aa"
+          },
+          "& .MuiRating-iconHover": {
+            color: "lightBlue"
+          }
+        }}
+      />
       <br />
       <select {...register("OverallRating", { required: true })}>
         <option value="1 Star">1 Star</option>
@@ -60,23 +70,42 @@ export default function ReviewForm() {
       </select>
       <br />      <br />
 
-      <label>Sub Ratings</label>
-      <br/>
+      <label className= 'SubRatingsHeader'>Sub Ratings</label>
       <br/>
       <label>Taste Rating</label>
-
-      <br />
-      <input type="range" placeholder="Taste Rating" {...register("TasteRating", {})} />
-      <br />
+      <Rating
+        sx={{
+          "& .MuiRating-iconFilled": {
+            color: "#1769aa"
+          },
+          "& .MuiRating-iconHover": {
+            color: "lightBlue"
+          }
+        }}
+      />
    
       <label>Quality Rating</label>
-      <br />
-      <input type="range" placeholder="Quality Rating" {...register("QualityRating", {required: true, maxLength: 100})} />
-      <br />
+      <Rating
+        sx={{
+          "& .MuiRating-iconFilled": {
+            color: "#1769aa"
+          },
+          "& .MuiRating-iconHover": {
+            color: "lightBlue"
+          }
+        }}
+      />
       <label>Selection Ratings</label>
-      <br />
-      <input type="range" placeholder="Selection Rating" {...register("SelectionRating", {min: 1, maxLength: 5})} />
-      <br />
+      <Rating
+        sx={{
+          "& .MuiRating-iconFilled": {
+            color: "#1769aa"
+          },
+          "& .MuiRating-iconHover": {
+            color: "lightBlue"
+          }
+        }}
+      />
       <label>Comment Text</label>
       <br />
       <textarea id="commentTitle" placeholder="Title" {...register("CommentText", {required: true, max: 1000, min: 10, maxLength: 1000})} />

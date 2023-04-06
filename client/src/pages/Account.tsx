@@ -1,15 +1,33 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "../components/cssStyles/cssAccount.module.css"
+import Button from '@mui/material/Button';
+import { auth, provider } from '../config/firebase-config.ts'
+import { signInWithPopup, signOut } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom';
 
-const Account = () => {
+import "../components/cssStyles/cssAccount.css"
+
+const Account = ({setIsAuth}) => {
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, provider).then((result) => {
+      localStorage.setItem("isAuth", true);
+      setIsAuth(true);
+    });
+  };
+  
+  const signUserOut = () => {
+    signOut(auth).then(() =>{
+      localStorage.clear();
+      let navigate = useNavigate();
+      navigate("/login");
+    })
+  }
+
+
   return (
-    <div>
-        
-
-
-            <div className="content">
-                <h1>Account</h1>
+            <div className="AccountContent">
+            <h1>Account</h1>
+              <div className='AccountBody' >
                 <br /><br />
                 <div className="userProfile"> 
                 <form action="login.html">
@@ -17,25 +35,14 @@ const Account = () => {
                     <input type="text" id="username" name="username" required /><br /><br />
                     <label htmlFor="username">Password:</label>
                     <input type="text" id="password" name="password" required /><br /><br />
-                    <input type="submit" defaultValue="Log In" />
+                    <br />
+
                 </form>
-                <br />
-                <Link to='/CreateAccount'><button defaultValue="Create Account">Create Account</button></Link>
-                       
+                <Button onClick={signUserOut} variant="contained">Sign Out</Button>
 
                 </div>
             </div>
-
-            {/* <div className="menu">
-                <a href="home.html" >Home</a>
-                <a href="review.html">Leave a Review</a>
-                <a href="map.html">Map View</a>
-                <a href="account.html" className="active">Account</a>
-            </div> */}
-
-        
-
-    </div>
+            </div>
   )
 }
 

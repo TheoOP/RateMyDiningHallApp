@@ -4,7 +4,7 @@ import FourStarIcon from '../assets/FourStarIcon.svg'
 import FourPointFiveStarIcon from '../assets/FourPointFiveStarIcon.svg'
 import RedLocationPin from '../assets/RedLocationPin.svg'
 
-import "../components/cssStyles/cssHomeV2.css"
+import "../components/cssStyles/cssHome.css"
 import { Link } from 'react-router-dom'
 
 

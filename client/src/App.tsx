@@ -7,7 +7,6 @@ import './components/cssStyles/cssHome.css'
 
 import './config/firebase-config';
 import Home from "./pages/Home"
-import HomeV2 from "./pages/HomeV2"
 
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
 import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
@@ -25,14 +24,11 @@ import ReviewFox from './pages/ReviewFox';
 import ReviewICC from './pages/ReviewICC';
 import ReviewSouth from './pages/ReviewSouth';
 import Error404 from './pages/Error404';
-
+import Login from './pages/Login'
 
 function App() {
+  const [isAuth, setIsAuth] = useState(false); 
 
-  function initFirebaseAuth() {
-    // Listen to auth state changes.
-    
-  }
   
   return (
     <BrowserRouter>
@@ -41,9 +37,9 @@ function App() {
         <Routes>
           
           <Route path="/Home" element={<Home />} />
-          <Route path="/HomeV2" element={<HomeV2 />} />
           <Route path="/" element={<Home />} />
-          <Route path="/Account" element={<Account />} />
+          <Route path="/Account" element={<Account setIsAuth = {setIsAuth} />} />
+          <Route path="/Login" element={<Login setIsAuth = {setIsAuth} />} />
           <Route path="/CreateAccount" element={<CreateAccount />} />
           <Route path="/Map" element={<Map />} />
           <Route path="/ReviewCumnock" element={<ReviewCumnock />} />
@@ -51,15 +47,15 @@ function App() {
           <Route path="/ReviewICC" element={<ReviewICC />} />
           <Route path="/ReviewSouth" element={<ReviewSouth />} />
           <Route path="/Review" element={<Review />} />
-          <Route path='*' element={<Error404 />} />
+          <Route path='*' element={<Error404 isAuth = {isAuth} />} />
 
         </Routes>
        
-
+        {isAuth && 
         <div className="container mt-2" style={{ marginTop: 40 }}>
-        <Navbar />
-
-      </div>
+          <Navbar />
+        </div> }
+        
       </div>
     </BrowserRouter>
 

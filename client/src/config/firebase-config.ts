@@ -3,7 +3,7 @@ import "firebase/analytics";
 import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 import { getStorage, ref } from "firebase/storage";
-
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Follow this pattern to import other Firebase services
 // import { } from 'firebase/<service>';
@@ -22,7 +22,9 @@ const firebaseConfig = {
 
 //initialize firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
+export const auth = getAuth(app);
+export const provider = new GoogleAuthProvider();
 
 // Get a list of cities from your database
 // async function getCities(db) {
