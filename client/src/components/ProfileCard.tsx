@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { auth, provider } from '../config/firebase-config'
+import { auth } from '../config/firebase-config'
 
 const ProfileCard = () => {
 

@@ -11,8 +11,14 @@
 }
 .AccountBody{
     height: 100%;
-
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
+
+
+
+
 .userProfile{
     width: 35%;
     height: 40%;
@@ -76,10 +82,32 @@
     font-weight: 500;
 }
 
-.AccountBody{
-    height: 100%;
+
+
+.UserReviewsCardContent{
+    width: 35%;
+    height: 40%;
+    border: 1px solid aliceblue;
+    background-color: aliceblue;
+    border-radius: 2%;
+
+}
+.UserReviewNameTime{
+    display: flex;
+    justify-content: space-between;
+
+}
+.UserReviewComment{
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.UserReviewNameRating{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
+
+
+
+
 

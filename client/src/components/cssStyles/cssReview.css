@@ -1,31 +1,32 @@
 
 /*Review Page*/
 label{
-  font-size: 20px; 
-  font-weight: 500;
-  }
-  
-  
-  .ReviewPageHeader{
-    background-color: #0469B1;
-  
-  }
+font-size: 20px; 
+font-weight: 500;
+}
 
-  .ReviewForm{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    background-color: whitesmoke;
-  }
-  #commentTitle{
-    width: 400px;
-  }
-  
-  #comment{
-    width: 400px;
-    height: 300px;
-    text-align: top;
-  }
-  
+
+.ReviewPageHeader{
+  background-color: #0469B1;
+
+}
+.ReviewContent{
+  height: 100%;
+}
+.ReviewForm{
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: whitesmoke;
+}
+#commentTitle{
+  width: 400px;
+}
+
+#comment{
+  width: 400px;
+  height: 200px;
+  text-align: top;
+}

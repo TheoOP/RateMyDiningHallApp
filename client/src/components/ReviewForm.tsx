@@ -1,6 +1,6 @@
 import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Rating } from '@mui/material';
+import { Rating, Select } from '@mui/material';
 
 enum LocationsEnum {
     Fox = "Fox Dining Commons",
@@ -35,6 +35,12 @@ interface IFormInput {
 export default function ReviewForm() {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInput>();
+  const [title, setTitle] = useState("");
+  const [reviewText, setReviewText] = useState("");
+
+  const reviewsCollectionRef = collection()
+
+
   const onSubmit: SubmitHandler<IFormInput> = (data : IFormInput) => console.log(data);
   console.log(errors);
   
@@ -61,14 +67,6 @@ export default function ReviewForm() {
         }}
       />
       <br />
-      <select {...register("OverallRating", { required: true })}>
-        <option value="1 Star">1 Star</option>
-        <option value=" 2 Star"> 2 Star</option>
-        <option value=" 3 Star"> 3 Star</option>
-        <option value=" 4 Star"> 4 Star</option>
-        <option value=" 5 Star"> 5 Star</option>
-      </select>
-      <br />      <br />
 
       <label className= 'SubRatingsHeader'>Sub Ratings</label>
       <br/>
@@ -106,7 +104,6 @@ export default function ReviewForm() {
           }
         }}
       />
-      <label>Comment Text</label>
       <br />
       <textarea id="commentTitle" placeholder="Title" {...register("CommentText", {required: true, max: 1000, min: 10, maxLength: 1000})} />
       <textarea id="comment" placeholder="Review:" {...register("CommentText", {required: true, max: 1000, min: 10, maxLength: 1000})} />
