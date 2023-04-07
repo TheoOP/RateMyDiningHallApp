@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { addDoc, collection } from 'firebase/firestore';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { Rating, Select } from '@mui/material';
+import { db, auth } from "../config/firebase-config"
+import { useNavigate } from "react-router-dom";
+
+import { Rating, Select } from '@mui/material'; //All imports for MUI API aka star ratings
 import { styled } from '@mui/material/styles';
+
 
 enum LocationsEnum {
     Fox = "Fox Dining Commons",
@@ -40,18 +45,41 @@ interface IFormInput {
     }
   });
 
-export default function ReviewForm() {
+export default function ReviewForm({ isAuth }) {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInput>();
- /* const [title, setTitle] = useState("");
-  const [reviewText, setReviewText] = useState("");   //For some reason these caused problems with the review page showing up
+  const [title, setTitle] = useState("");
+  const [reviewText, setReviewText] = useState("");  
+  const [overallRating, setOverallRating] = React.useState(0); //Overall rating
+  const [tasteRating, setTasteRating] = React.useState(0); //Taste
+  const [qualityRating, setQualityRating] = React.useState(0); //quality
+  const [selectionRating, setSelectionRating] = React.useState(0); //selection
+  const [location, setLocation] = useState(""); //location selection
 
-  const reviewsCollectionRef = collection() */
-const [value1, setValue1] = React.useState(0); //Overall rating
-const [value2, setValue2] = React.useState(0); //Taste
-const [value3, setValue3] = React.useState(0); //quality
-const [value4, setValue4] = React.useState(0); //selection
+  const reviewsCollectionRef = collection(db, "reviews")
 
+  let navigate = useNavigate();
+  const createReview = async () => {
+    await addDoc(reviewsCollectionRef, {
+      title,
+      reviewText,
+      overallRating,
+      tasteRating,
+      qualityRating,
+      selectionRating,
+      location,
+      author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
+    });
+    navigate("/"); //after you submit a post you go back to home page
+  }
+
+  /* is auth is not working
+  useEffect(() => {
+    if (!isAuth) {
+      navigate("/login");
+    }
+  }, []);
+  */
   const onSubmit: SubmitHandler<IFormInput> = (data : IFormInput) => console.log(data);
   console.log(errors);
   
@@ -59,7 +87,11 @@ const [value4, setValue4] = React.useState(0); //selection
     <form className="ReviewForm" onSubmit={handleSubmit(onSubmit)}>
       <label>Dining Locations</label>
       <br />
-      <select {...register("Location", { required: true })}>
+      <select {...register("Location", { required: true })} 
+      onChange={(event) => {
+        setLocation(event.target.value);
+      }}
+      >
         <option value="Fox Dining Commons">Fox Dining Commons</option>
         <option value=" Cumnock MarketPlace"> Cumnock MarketPlace</option>
         <option value=" Inn & Conference Dining"> Inn & Conference Dining</option>
@@ -80,9 +112,9 @@ const [value4, setValue4] = React.useState(0); //selection
       <StyledRating
       name="simple-controlled"
       defaultValue={0}
-      value={value1}
+      value={overallRating}
       onChange={(event, newValue) => {
-        setValue1(newValue);
+        setOverallRating(newValue);
         console.log(newValue);
         }}
       />
@@ -107,9 +139,9 @@ const [value4, setValue4] = React.useState(0); //selection
       <StyledRating
       name="simple-controlled"
       defaultValue={0}
-      value={value2}
+      value={tasteRating}
       onChange={(event, newValue) => {
-        setValue2(newValue);
+        setTasteRating(newValue);
         console.log(newValue);
         }}
       />
@@ -128,9 +160,9 @@ const [value4, setValue4] = React.useState(0); //selection
       <StyledRating
       name="simple-controlled"
       defaultValue={0}
-      value={value3}
+      value={qualityRating}
       onChange={(event, newValue) => {
-        setValue3(newValue);
+        setQualityRating(newValue);
         console.log(newValue);
         }}
       />
@@ -149,18 +181,26 @@ const [value4, setValue4] = React.useState(0); //selection
       <StyledRating
       name="simple-controlled"
       defaultValue={0}
-      value={value4}
+      value={selectionRating}
       onChange={(event, newValue) => {
-        setValue4(newValue);
+        setSelectionRating(newValue);
         console.log(newValue);
         }}
       />
       <br />
-      <textarea id="commentTitle" placeholder="Title" {...register("CommentText", {required: true, max: 1000, min: 10, maxLength: 1000})} />
-      <textarea id="comment" placeholder="Review:" {...register("CommentText", {required: true, max: 1000, min: 10, maxLength: 1000})} />
+      <textarea id="commentTitle" placeholder="Title" {...register("CommentText", {required: true, max: 1000, min: 10, maxLength: 1000})} 
+      onChange={(event) => {
+        setTitle(event.target.value);
+      }}
+      />
+      <textarea id="comment" placeholder="Review:" {...register("CommentText2", {required: true, max: 1000, min: 10, maxLength: 1000})} 
+      onChange={(event) => {
+        setReviewText(event.target.value);
+      }}
+        />
       <br />
 
-      <input type="submit" placeholder="Submit Review" />
+      <input type="submit" placeholder="Submit Review" onClick={createReview} />
     </form>
   );
 }

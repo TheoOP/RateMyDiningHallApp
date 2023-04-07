@@ -54,7 +54,7 @@ function App() {
           <Route path="/ReviewFox" element={<ReviewFox />} />
           <Route path="/ReviewICC" element={<ReviewICC />} />
           <Route path="/ReviewSouth" element={<ReviewSouth />} />
-          <Route path="/Review" element={<Review />} />
+          <Route path="/Review" element={<Review isAuth = {isAuth}/>} />
           <Route path='*' element={<Error404 isAuth = {isAuth} />} />
 
         </Routes>

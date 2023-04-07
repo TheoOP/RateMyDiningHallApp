@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 import "firebase/analytics";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import { getFirestore, collection, getDocs } from 'firebase/firestore'; //I had to change this from firestore/lite to firestore for getting firestore data
 import { getStorage, ref } from "firebase/storage";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
