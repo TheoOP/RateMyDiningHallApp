@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Rating, Select } from '@mui/material';
+import { styled } from '@mui/material/styles';
 
 enum LocationsEnum {
     Fox = "Fox Dining Commons",
@@ -30,16 +31,26 @@ interface IFormInput {
     exampleRequired: string,
   };
 
-
+  const StyledRating = styled(Rating)({
+    "& .MuiRating-iconFilled": {
+      color: "#1769aa"
+    },
+    "& .MuiRating-iconHover": {
+      color: "lightBlue"
+    }
+  });
 
 export default function ReviewForm() {
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm<IFormInput>();
-  const [title, setTitle] = useState("");
-  const [reviewText, setReviewText] = useState("");
+ /* const [title, setTitle] = useState("");
+  const [reviewText, setReviewText] = useState("");   //For some reason these caused problems with the review page showing up
 
-  const reviewsCollectionRef = collection()
-
+  const reviewsCollectionRef = collection() */
+const [value1, setValue1] = React.useState(0); //Overall rating
+const [value2, setValue2] = React.useState(0); //Taste
+const [value3, setValue3] = React.useState(0); //quality
+const [value4, setValue4] = React.useState(0); //selection
 
   const onSubmit: SubmitHandler<IFormInput> = (data : IFormInput) => console.log(data);
   console.log(errors);
@@ -56,7 +67,7 @@ export default function ReviewForm() {
       </select>
       <br />
       <label>Overall Rating</label>
-      <Rating
+      {/* <Rating
         sx={{
           "& .MuiRating-iconFilled": {
             color: "#1769aa"
@@ -65,13 +76,25 @@ export default function ReviewForm() {
             color: "lightBlue"
           }
         }}
+      /> */}
+      <StyledRating
+      name="simple-controlled"
+      defaultValue={0}
+      value={value1}
+      onChange={(event, newValue) => {
+        setValue1(newValue);
+        console.log(newValue);
+        }}
       />
+      
+      
+
       <br />
 
       <label className= 'SubRatingsHeader'>Sub Ratings</label>
       <br/>
       <label>Taste Rating</label>
-      <Rating
+      {/* <Rating
         sx={{
           "& .MuiRating-iconFilled": {
             color: "#1769aa"
@@ -79,11 +102,20 @@ export default function ReviewForm() {
           "& .MuiRating-iconHover": {
             color: "lightBlue"
           }
+        }}
+      /> */}
+      <StyledRating
+      name="simple-controlled"
+      defaultValue={0}
+      value={value2}
+      onChange={(event, newValue) => {
+        setValue2(newValue);
+        console.log(newValue);
         }}
       />
    
       <label>Quality Rating</label>
-      <Rating
+      {/* <Rating
         sx={{
           "& .MuiRating-iconFilled": {
             color: "#1769aa"
@@ -92,9 +124,19 @@ export default function ReviewForm() {
             color: "lightBlue"
           }
         }}
+      /> */}
+      <StyledRating
+      name="simple-controlled"
+      defaultValue={0}
+      value={value3}
+      onChange={(event, newValue) => {
+        setValue3(newValue);
+        console.log(newValue);
+        }}
       />
+
       <label>Selection Ratings</label>
-      <Rating
+      {/* <Rating
         sx={{
           "& .MuiRating-iconFilled": {
             color: "#1769aa"
@@ -102,6 +144,15 @@ export default function ReviewForm() {
           "& .MuiRating-iconHover": {
             color: "lightBlue"
           }
+        }}
+      /> */}
+      <StyledRating
+      name="simple-controlled"
+      defaultValue={0}
+      value={value4}
+      onChange={(event, newValue) => {
+        setValue4(newValue);
+        console.log(newValue);
         }}
       />
       <br />
