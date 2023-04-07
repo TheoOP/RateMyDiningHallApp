@@ -3,6 +3,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { db, auth } from "../config/firebase-config"
 import { useNavigate } from "react-router-dom";
+import Time from 'react-time';
 
 import { Rating, Select } from '@mui/material'; //All imports for MUI API aka star ratings
 import { styled } from '@mui/material/styles';
@@ -54,7 +55,8 @@ export default function ReviewForm({ isAuth }) {
   const [tasteRating, setTasteRating] = React.useState(0); //Taste
   const [qualityRating, setQualityRating] = React.useState(0); //quality
   const [selectionRating, setSelectionRating] = React.useState(0); //selection
-  const [location, setLocation] = useState(""); //location selection
+  const [location, setLocation] = useState("Fox Dining Commons"); //location selection
+  const [currentTime, setCurrentTime] = useState(""); //current time
 
   const reviewsCollectionRef = collection(db, "reviews")
 
@@ -68,10 +70,13 @@ export default function ReviewForm({ isAuth }) {
       qualityRating,
       selectionRating,
       location,
+      currentTime,
       author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
     });
     navigate("/"); //after you submit a post you go back to home page
   }
+
+  
 
   /* is auth is not working
   useEffect(() => {
@@ -192,12 +197,13 @@ export default function ReviewForm({ isAuth }) {
       onChange={(event) => {
         setTitle(event.target.value);
       }}
-      />
+      required/>
       <textarea id="comment" placeholder="Review:" {...register("CommentText2", {required: true, max: 1000, min: 10, maxLength: 1000})} 
       onChange={(event) => {
         setReviewText(event.target.value);
+        setCurrentTime(Date()); //sets the date for the review
       }}
-        />
+      required/>
       <br />
 
       <input type="submit" placeholder="Submit Review" onClick={createReview} />
