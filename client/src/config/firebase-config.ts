@@ -10,14 +10,14 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAutMwC8F-GDxxmBhV9VYIkRKSZOpq0Bg4",
-    authDomain: "dailydininghallrater.firebaseapp.com",
-    projectId: "dailydininghallrater",
-    storageBucket: "dailydininghallrater.appspot.com",
-    messagingSenderId: "34434878791",
-    appId: "1:34434878791:web:39eef4e381fb91ba3d9062",
-    measurementId: "G-33K3ZBP239"
-  };
+  apiKey: "AIzaSyCskP3liwgra_C6HZDMpw3MjSIuxW5HYDk",
+  authDomain: "dailydininghallraterv2.firebaseapp.com",
+  projectId: "dailydininghallraterv2",
+  storageBucket: "dailydininghallraterv2.appspot.com",
+  messagingSenderId: "628069530534",
+  appId: "1:628069530534:web:07cc4e91db428f68b5ad67",
+  measurementId: "G-D0BHGKB7WC"
+};
 
 
 //initialize firebase
