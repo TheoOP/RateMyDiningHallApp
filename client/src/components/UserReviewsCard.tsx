@@ -53,6 +53,7 @@ const UserReviewsCard = () => {
       </button>
       </div> */}
       <div>{reviewLists.map((review) => {
+        if (review.author.name == auth.currentUser.displayName) {
         return (
           <div className="review"> 
             <hr></hr>
@@ -71,7 +72,7 @@ const UserReviewsCard = () => {
             <hr></hr>
           </div>
         );
-      })}  
+      }})}  
       </div>
     </div>
   )
