@@ -90,6 +90,7 @@
     border: 1px solid aliceblue;
     background-color: aliceblue;
     border-radius: 2%;
+    overflow-y: scroll
 
 }
 .UserReviewNameTime{
