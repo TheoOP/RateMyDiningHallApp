@@ -21,7 +21,7 @@ const Home = () => {
         <img className='LocationPin' src={LocationPin} height={45} alt="Uml Logo Icon" />
         <img className='HeaderIcon' src={UmlLogoIcon} height={45} alt="Uml Logo Icon" /> UMass Lowell</h1>
         
-        <PrimarySearchAppBar />
+        {/* <PrimarySearchAppBar /> */}
         <br />
       <div className='mainBody'>    
         <h2 className='TopRatedHeader'>Top Rated Today</h2>

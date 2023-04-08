@@ -15,9 +15,9 @@ const UserReviewsCard = () => {
       const data = await getDocs(reviewsCollectionRef);
       setReviewList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-
+  
     getReviews();
-  })
+  }, []); // add an empty dependency array here
 
 
   //const value = 4;
