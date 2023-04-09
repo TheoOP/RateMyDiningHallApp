@@ -9,12 +9,20 @@ import RedLocationPin from '../assets/RedLocationPin.svg'
 import "../components/cssStyles/cssHome.css"
 import { Link } from 'react-router-dom'
 
+interface TopRatedCardProps {
+    name: string;
+    image: string;
+    rating: number;
+    ratingCount: number;
+    location: string;
+}
 
-
-const TopRatedCard = (props: any) => {
-    var reviewLink = '/review';
-    var extracted = props.name.split(" ");
-    reviewLink += extracted[0];
+const TopRatedCard = (props: TopRatedCardProps) => {
+    var reviewLink = '/review/';
+    if (props.name) {
+        var extracted = props.name.split(" ");
+        reviewLink += extracted[0];
+      }
   return (
     <div className='TopRatedCardContainer'>
         {/* <img src={FoxHall} height={200} /> */}

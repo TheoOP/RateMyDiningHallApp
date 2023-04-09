@@ -73,23 +73,3 @@ function App() {
 }
 
 export default App
-// // Add a new document in collection "cities"
-// await setDoc(doc(db, "cities", "LA"), {
-//   name: "Los Angeles",
-//   state: "CA",
-//   country: "USA"
-// });
-// async function saveMessage(messageText) {
-//   // Add a new message entry to the Firebase database.
-//   try {
-//     await addDoc(collection(getFirestore(), 'messages'), {
-//       name: getUserName(),
-//       text: messageText,
-//       profilePicUrl: getProfilePicUrl(),
-//       timestamp: serverTimestamp()
-//     });
-//   }
-//   catch(error) {
-//     console.error('Error writing new message to Firebase Database', error);
-//   }
-// }

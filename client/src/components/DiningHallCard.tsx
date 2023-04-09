@@ -6,13 +6,22 @@ import RedLocationPin from '../assets/RedLocationPin.svg'
 
 import "../components/cssStyles/cssHome.css"
 import { Link } from 'react-router-dom'
+interface DiningHallCardProps {
+    name: string;
+    image: string;
+    rating: number;
+    ratingCount: number;
+    location: string;
+}
 
 
 
 const DiningHallCard = (props: any) => {
-    var reviewLink = '/review';
-    var extracted = props.name.split(" ");
-    reviewLink += extracted[0];
+    var reviewLink = '/review/';
+    if (props.name) {
+        var extracted = props.name.split(" ");
+        reviewLink += extracted[0];
+      }
   return (
     <div className='DiningHallCardContainer'>
         {/* <img src={FoxHall} height={200} /> */}

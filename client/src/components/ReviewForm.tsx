@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, updateDoc, increment, collection } from 'firebase/firestore';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { db, auth } from "../config/firebase-config"
 import { useNavigate } from "react-router-dom";
@@ -59,6 +59,7 @@ export default function ReviewForm({ isAuth }) {
   const [currentTime, setCurrentTime] = useState(""); //current time
 
   const reviewsCollectionRef = collection(db, "reviews")
+  const locationsCollectionRef = collection(db, "locations");
 
   let navigate = useNavigate();
   const createReview = async () => {
@@ -73,7 +74,25 @@ export default function ReviewForm({ isAuth }) {
       currentTime,
       author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
     });
-    navigate("/"); //after you submit a post you go back to home page
+      // Calculate the new daily rating based on the review rating
+      const newDailyRatingCount = locationData.dailyratingcount + 1;
+      const newDailyRating =
+        (locationData.dailyrating * locationData.dailyratingcount +
+          overallRating) /
+        newDailyRatingCount;
+
+      // Update the location document with the new daily rating
+      await updateDoc(locationDocRef, {
+        overallratingcount: increment(1),
+        dailyratingcount: newDailyRatingCount,
+        dailyrating: newDailyRating,
+        overallrating: newDailyRating
+      });
+    
+    getlocations();
+
+
+    navigate("/home"); //after you submit a post you go back to home page
   }
 
   
@@ -123,24 +142,12 @@ export default function ReviewForm({ isAuth }) {
         console.log(newValue);
         }}
       />
-      
-      
 
       <br />
-
       <label className= 'SubRatingsHeader'>Sub Ratings</label>
       <br/>
       <label>Taste Rating</label>
-      {/* <Rating
-        sx={{
-          "& .MuiRating-iconFilled": {
-            color: "#1769aa"
-          },
-          "& .MuiRating-iconHover": {
-            color: "lightBlue"
-          }
-        }}
-      /> */}
+
       <StyledRating
       name="simple-controlled"
       defaultValue={0}
@@ -152,16 +159,7 @@ export default function ReviewForm({ isAuth }) {
       />
    
       <label>Quality Rating</label>
-      {/* <Rating
-        sx={{
-          "& .MuiRating-iconFilled": {
-            color: "#1769aa"
-          },
-          "& .MuiRating-iconHover": {
-            color: "lightBlue"
-          }
-        }}
-      /> */}
+
       <StyledRating
       name="simple-controlled"
       defaultValue={0}
@@ -173,16 +171,7 @@ export default function ReviewForm({ isAuth }) {
       />
 
       <label>Selection Ratings</label>
-      {/* <Rating
-        sx={{
-          "& .MuiRating-iconFilled": {
-            color: "#1769aa"
-          },
-          "& .MuiRating-iconHover": {
-            color: "lightBlue"
-          }
-        }}
-      /> */}
+
       <StyledRating
       name="simple-controlled"
       defaultValue={0}

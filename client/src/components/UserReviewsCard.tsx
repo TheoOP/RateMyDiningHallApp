@@ -6,8 +6,7 @@ import { getDocs, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 
 const UserReviewsCard = () => {
-  const [reviewLists, setReviewList] = useState([]);
-
+const [reviewLists, setReviewList] = useState<Array<any>>([]);
   const reviewsCollectionRef = collection(db, "reviews")
 
   useEffect(() => {
@@ -53,7 +52,7 @@ const UserReviewsCard = () => {
       </button>
       </div> */}
       <div>{reviewLists.map((review) => {
-        if (review.author.name == auth.currentUser.displayName) {
+        if (review.author.name == auth.currentUser?.displayName) {
         return (
           <div className="review"> 
             <hr></hr>
@@ -71,8 +70,8 @@ const UserReviewsCard = () => {
             <h4>By: {review.author.name}</h4>
             <hr></hr>
           </div>
-        );
-      }})}  
+          );
+        }})}  
       </div>
     </div>
   )
