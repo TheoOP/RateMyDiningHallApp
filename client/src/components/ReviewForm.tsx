@@ -104,8 +104,8 @@ export default function ReviewForm({ isAuth }) {
     }
   }, []);
   */
-  const onSubmit: SubmitHandler<IFormInput> = (data : IFormInput) => console.log(data);
-  console.log(errors);
+   const onSubmit: SubmitHandler<IFormInput> = (data : IFormInput) => console.log(data);
+  // console.log(errors);
   
   return (
     <form className="ReviewForm" onSubmit={handleSubmit(onSubmit)}>
@@ -117,9 +117,9 @@ export default function ReviewForm({ isAuth }) {
       }}
       >
         <option value="Fox Dining Commons">Fox Dining Commons</option>
-        <option value=" Cumnock MarketPlace"> Cumnock MarketPlace</option>
-        <option value=" Inn & Conference Dining"> Inn & Conference Dining</option>
-        <option value=" South Campus Dining Commons"> South Campus Dining Commons</option>
+        <option value="Cumnock MarketPlace"> Cumnock MarketPlace</option>
+        <option value="Inn & Conference Dining"> Inn & Conference Dining</option>
+        <option value="South Campus Dining Commons"> South Campus Dining Commons</option>
       </select>
       <br />
       <label>Overall Rating</label>

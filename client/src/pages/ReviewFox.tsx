@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState , useEffect } from 'react';
 import $ from 'jquery';
 import '../components/cssStyles/cssFoxReview.module.css'
 import '../components/cssStyles/reviewPage.css'
@@ -11,12 +11,26 @@ import { FaArrowAltCircleDown } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
 
-
+ //These are all imports to display the user's reviews -Ethan
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from "../config/firebase-config"
+import { auth } from '../config/firebase-config'
 
 
 
 const ReviewFox = () => {
+    const [reviewLists, setReviewList] = useState<Array<any>>([]);
 
+    const reviewsCollectionRef = collection(db, "reviews")
+  
+    useEffect(() => {
+      const getReviews = async() => {
+        const data = await getDocs(reviewsCollectionRef);
+        setReviewList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      };
+    
+      getReviews();
+    }, []); // add an empty dependency array here
   
 
     function addReview(username: any, overallStars: any, tStars: any, qStars: any, sStars: any, reviewText: any, numUpvotes: any, numDownvotes: any, comments: any, postId: any){
@@ -125,10 +139,32 @@ const ReviewFox = () => {
         <div>
             <div className="content">
                 <h1>Fox Dining Commons Reviews</h1>
-                <div id="reviewBody" className="reviewBody" />
+                {/* <div id="reviewBody" className="reviewBody" />
                 {addReview('APPENDED1', 4, 1, 0, 5, 'good food', 7, 3, 'erm', 1)}
                 {addReview('APPENDED2', 4, 1, 0, 5, 'mid food', 7, 3, 'erm', 2)}
-                {addReview('APPENDED3', 4, 1, 0, 5, 'bad food', 7, 3, 'erm', 3)}
+                {addReview('APPENDED3', 4, 1, 0, 5, 'bad food', 7, 3, 'erm', 3)} */}
+                <div>{reviewLists.map((review) => {
+                    if (review.location == "Fox Dining Commons") {
+                    return (
+                    <div className="reviewPost"> 
+                        <hr></hr>
+                        <div className="reviewHeader">
+                        <div className="title">
+                            <span>
+                            <h5>{review.currentTime}</h5>
+                            <h2>{review.title}</h2>
+                            </span>
+                        </div>
+                        </div>
+                        <span>Ratings: Overall-{review.overallRating} Taste-{review.tasteRating} Quality-{review.qualityRating} Selection-{review.selectionRating}</span>
+                        <hr></hr>
+                        <div className="reviewTextContainer"> {review.reviewText} </div>
+                        <h4>By: {review.author.name}</h4>
+                        <hr></hr>
+                    </div>
+                    );
+                }})}  
+                </div>
             </div>
             
             {/* This is here so the footer doesnt cover content */}

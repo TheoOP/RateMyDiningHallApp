@@ -59,8 +59,9 @@ const [reviewLists, setReviewList] = useState<Array<any>>([]);
             <div className="reviewHeader">
               <div className="title">
                 <span>
-                <h2>{review.title}</h2>
+                <h3>Location: {review.location}</h3>
                 <h5>{review.currentTime}</h5>
+                <h2>{review.title}</h2>
                 </span>
               </div>
             </div>
