@@ -17,7 +17,7 @@ interface DiningHallCardProps {
 
 
 const DiningHallCard = (props: any) => {
-    var reviewLink = '/review/';
+    var reviewLink = '/review';
     if (props.name) {
         var extracted = props.name.split(" ");
         reviewLink += extracted[0];
