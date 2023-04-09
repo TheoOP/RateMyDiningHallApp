@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { addDoc, updateDoc, increment, collection } from 'firebase/firestore';
+import { addDoc,getDoc, doc, updateDoc, increment, collection } from 'firebase/firestore';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { db, auth } from "../config/firebase-config"
 import { useNavigate } from "react-router-dom";
@@ -15,17 +15,6 @@ enum LocationsEnum {
     ICC = "Inn & Conference Dining",
     South = "South Campus Dining Commons"
   }
-
-type Inputs = {
-  Location: LocationsEnum,
-  OverallRating: string,
-  TasteRating: string,
-  QualityRating: string,
-  SelectionRating: string,
-  CommentText: string,
-  exampleRequired: string,
-};
-
 
 interface IFormInput {
     Location: LocationsEnum;
@@ -61,6 +50,7 @@ export default function ReviewForm({ isAuth }) {
   const reviewsCollectionRef = collection(db, "reviews")
   const locationsCollectionRef = collection(db, "locations");
 
+  
   let navigate = useNavigate();
   const createReview = async () => {
     await addDoc(reviewsCollectionRef, {
@@ -75,6 +65,10 @@ export default function ReviewForm({ isAuth }) {
       author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
     });
       // Calculate the new daily rating based on the review rating
+      
+      const locationRef = doc(db, 'locations',location);
+      const locationDocSnap = await getDoc(locationRef);
+      const locationData = locationDocSnap.data();
       const newDailyRatingCount = locationData.dailyratingcount + 1;
       const newDailyRating =
         (locationData.dailyrating * locationData.dailyratingcount +
@@ -82,14 +76,14 @@ export default function ReviewForm({ isAuth }) {
         newDailyRatingCount;
 
       // Update the location document with the new daily rating
-      await updateDoc(locationDocRef, {
+      await updateDoc(locationRef, {
         overallratingcount: increment(1),
         dailyratingcount: newDailyRatingCount,
         dailyrating: newDailyRating,
         overallrating: newDailyRating
       });
     
-    getlocations();
+    // getlocations();
 
 
     navigate("/home"); //after you submit a post you go back to home page

@@ -9,7 +9,7 @@ import CreateAccount from './pages/CreateAccount';
 import Map from './pages/Map';
 import ReviewCumnock from './pages/ReviewCumnock';
 import ReviewFox from './pages/ReviewFox';
-import ReviewICC from './pages/ReviewICC';
+import ReviewInn from './pages/ReviewInn';
 import ReviewSouth from './pages/ReviewSouth';
 import Error404 from './pages/Error404';
 import Login from './pages/Login'
@@ -52,7 +52,7 @@ function App() {
           <Route path="/Map" element={<Map />} />
           <Route path="/ReviewCumnock" element={<ReviewCumnock />} />
           <Route path="/ReviewFox" element={<ReviewFox />} />
-          <Route path="/ReviewICC" element={<ReviewICC />} />
+          <Route path="/ReviewInn" element={<ReviewInn />} />
           <Route path="/ReviewSouth" element={<ReviewSouth />} />
           <Route path="/Review" element={<Review isAuth = {isAuth}/>} />
           <Route path='*' element={<Error404 isAuth = {isAuth} />} />
