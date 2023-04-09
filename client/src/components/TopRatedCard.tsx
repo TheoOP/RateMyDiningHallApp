@@ -18,7 +18,7 @@ interface TopRatedCardProps {
 }
 
 const TopRatedCard = (props: TopRatedCardProps) => {
-    var reviewLink = '/review/';
+    var reviewLink = '/review';
     if (props.name) {
         var extracted = props.name.split(" ");
         reviewLink += extracted[0];
