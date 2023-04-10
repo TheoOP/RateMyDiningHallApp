@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-import { getDocs, setDoc, collection } from 'firebase/firestore';
+import { useEffect } from 'react';
+import { getDocs, doc, updateDoc, setDoc, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 
 interface Location {
+  id: string;
   name: string;
   dailyrating: number;
   dailyratingcount: number;
-  location: string;
+  address: string;
 }
 
 const ResetRatings = () => {
@@ -16,15 +17,16 @@ const ResetRatings = () => {
   useEffect(() => {
     const resetRatings = async () => {
       const data = await getDocs(locationsCollectionRef);
-      const locations = data.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Location));
+      const locations = data.docs.map((doc) => ({ id: doc.id, ...doc.data() } as unknown as Location));
       
       const resetPromises = locations.map(async (location) => {
-        await setDoc(collection(db, "locations").doc(location.id), {
-          ...location,
+        const locationRef = doc(db, "locations", location.id);
+        await updateDoc(locationRef, {
           dailyrating: 0,
           dailyratingcount: 0,
         });
       });
+      
 
       await Promise.all(resetPromises);
     };
