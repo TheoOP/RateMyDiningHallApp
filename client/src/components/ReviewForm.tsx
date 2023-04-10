@@ -48,7 +48,7 @@ export default function ReviewForm({ isAuth }) {
   const [currentTime, setCurrentTime] = useState(""); //current time
 
   const reviewsCollectionRef = collection(db, "reviews")
-  const locationsCollectionRef = collection(db, "locations");
+  // const locationsCollectionRef = collection(db, "locations");
 
   
   let navigate = useNavigate();
