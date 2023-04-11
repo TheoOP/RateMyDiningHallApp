@@ -48,7 +48,7 @@ export default function ReviewForm({ isAuth }) {
   const [currentTime, setCurrentTime] = useState(""); //current time
 
   const reviewsCollectionRef = collection(db, "reviews")
-  // const locationsCollectionRef = collection(db, "locations");
+  const locationsCollectionRef = collection(db, "locations");
 
   
   let navigate = useNavigate();
@@ -63,6 +63,7 @@ export default function ReviewForm({ isAuth }) {
       location,
       currentTime,
       author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
+      votes: {upvotes: 0, downvotes: 0}
     });
       // Calculate the new daily rating based on the review rating
       

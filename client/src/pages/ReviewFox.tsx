@@ -10,6 +10,8 @@ import { FaRegArrowAltCircleDown } from "react-icons/fa";
 import { FaArrowAltCircleDown } from "react-icons/fa";
 import { FaChevronRight } from "react-icons/fa";
 import { FaChevronDown } from "react-icons/fa";
+import addReview from '../components/AddReview';
+import vote from '../components/Vote';
 
  //These are all imports to display the user's reviews -Ethan
 import { getDocs, collection } from 'firebase/firestore';
@@ -32,107 +34,11 @@ const ReviewFox = () => {
       getReviews();
     }, []); // add an empty dependency array here
   
+    reviewLists.map((review) => {
 
-    function addReview(username: any, overallStars: any, tStars: any, qStars: any, sStars: any, reviewText: any, numUpvotes: any, numDownvotes: any, comments: any, postId: any){
-        var [upvoteChecked, upvoteSetChecked] = useState(false);   
-        const upvoteOnChange = () => {       
-          upvoteSetChecked(!upvoteChecked);    
-          if(!upvoteChecked){
-              downvoteSetChecked(false);
-          }
-        }; 
-  
-        var [downvoteChecked, downvoteSetChecked] = useState(false);   
-        const downvoteOnChange = () => {       
-          downvoteSetChecked(!downvoteChecked);    
-          if(!downvoteChecked){
-              upvoteSetChecked(false);
-          }
-        }; 
-  
-        var [viewDetailsChecked, viewDetailsSetChecked] = useState(false);   
-        const viewDetailsOnChange = () => {       
-          viewDetailsSetChecked(!viewDetailsChecked);    
-        }; 
-
-        var [commentsChecked, commentsSetChecked] = useState(false);   
-        const commentsOnChange = () => {       
-            commentsSetChecked(!commentsChecked);    
-        }; 
-  
-        const upId = 'upvote' + postId;
-        const downId = 'downvote' + postId;
-        const edId = 'ED' + postId;
-        const edDivId = 'EDDiv' + postId; 
-        return( 
-        <div className="reviewPost">  
-        <h2 className="username">{username}</h2>
-        {1 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
-        {2 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
-        {3 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
-        {4 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
-        {5 <= overallStars ? (<FaStar size={42} className='highlight'/>) : (<FaRegStar size={42}/>)} 
-           
-        
-        <h3 className="reviewText"> {reviewText} </h3>
-        <span className="numVotes" id="numUpvotes' + postId +'">   {upvoteChecked ? (numUpvotes + 1) : (numUpvotes)} </span>
-       <label className="upvote">
-         <input type="checkbox" name="upvoteCheck" className="upvoteCheckbox" id= {upId} onChange={upvoteOnChange}/>        
-         {upvoteChecked ? (<FaArrowAltCircleUp size={42} />) : (<FaRegArrowAltCircleUp size={42} />)}         
-        </label>
-        <span className="numVotes" id="numDownvotes' + postId +'">  {downvoteChecked ? (numDownvotes + 1) : (numDownvotes)}   </span>
-        <label className="downvote"> 
-        <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" id= {downId} onChange={downvoteOnChange}/>        
-        {downvoteChecked ? (<FaArrowAltCircleDown size={42} />) : (<FaRegArrowAltCircleDown size={42} />)}               
-        </label>
-  
-        <label className="expandDetails">
-        
-            <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" id= {edId} onChange={viewDetailsOnChange}/> 
-            View more details&nbsp;&nbsp;      
-            {viewDetailsChecked ? (<FaChevronDown/>) : (<FaChevronRight/>)}
-        </label>
-        
-        <div id= {edDivId} className={viewDetailsChecked ? ('show') : ('hide')}>
-        <hr/>Taste:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {1 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {2 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {3 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {4 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {5 <= tStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-           
-  
-        <br/>Quality:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        {1 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {2 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {3 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {4 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {5 <= qStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-           
-  
-        <br/>Selection:&nbsp;&nbsp;&nbsp;
-        {1 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {2 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {3 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {4 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-        {5 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
-           
-        
-         <br/><hr/></div>
-  
-        <br/>
-  
-        <div className="comments">
-        <label className="expandComments">
-            <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" onChange={commentsOnChange}/>
-            <span className="expandCommentsHeader">Expand comments&nbsp;&nbsp;</span>
-            {commentsChecked ? (<FaChevronDown/>) : (<FaChevronRight/>)}
-        </label>
-    </div>
-    </div>    
-        )
-
-  };
+    });  
+    
+    
 
   return (
     <div>
@@ -145,22 +51,11 @@ const ReviewFox = () => {
                 {addReview('APPENDED3', 4, 1, 0, 5, 'bad food', 7, 3, 'erm', 3)} */}
                 <div>{reviewLists.map((review) => {
                     if (review.location == "Fox Dining Commons") {
+
+                     
                     return (
-                    <div className="reviewPost"> 
-                        <hr></hr>
-                        <div className="reviewHeader">
-                        <div className="title">
-                            <span>
-                            <h5>{review.currentTime}</h5>
-                            <h2>{review.title}</h2>
-                            </span>
-                        </div>
-                        </div>
-                        <span>Ratings: Overall-{review.overallRating} Taste-{review.tasteRating} Quality-{review.qualityRating} Selection-{review.selectionRating}</span>
-                        <hr></hr>
-                        <div className="reviewTextContainer"> {review.reviewText} </div>
-                        <h4>By: {review.author.name}</h4>
-                        <hr></hr>
+                    <div className="reviewPost">                   
+                        { addReview(review.author.name, review.overallRating, review.tasteRating, review.qualityRating, review.selectionRating, review.reviewText, 7, 3, 'erm', review.id, review.currentTime, review.title) }
                     </div>
                     );
                 }})}  

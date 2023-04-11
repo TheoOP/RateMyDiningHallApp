@@ -105,12 +105,11 @@ h1 {
   .upvote{
     margin-right:50px;
     margin-left: 10px;
-    margin-top: 100px;
+    flex: 1;
   }
   
   .downvote{
     margin-left: 10px;
-    margin-top: 100px;
   }
   
   .expandDetails input[type="checkbox"],
@@ -156,12 +155,17 @@ h1 {
   
   .expandCommentsHeader{
       font-size: 18px;
-      font-weight: 100;
+      
   }
   
   .numVotes{
-      margin-top: -10px;
+      bottom:0;
       font-size:36px;
+      flex: 1;
+  }
+
+  .voteCheckbox{
+    display: none;
   }
   
   .show{
@@ -170,4 +174,28 @@ h1 {
   
   .hide{
     display: none;
+  }
+
+  .votesDiv{
+    height:auto;
+    width: 5%;
+    display: flex; 
+  }
+
+  .edDiv{
+    display:block;
+    width:100%;
+    min-height:90px;
+    height:auto;
+  }
+
+  .edNames{
+    display: block;
+float:left;
+font-size: 24px;
+  }
+
+  .edStars{
+    display: block;
+    float:left;
   }

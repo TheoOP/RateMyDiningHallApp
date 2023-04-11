@@ -1,10 +1,23 @@
 import React, {useState , useEffect } from 'react';
-import '../components/cssStyles/cssCumnockReview.module.css'
+import $ from 'jquery';
+import '../components/cssStyles/cssFoxReview.module.css'
+import '../components/cssStyles/reviewPage.css'
+import { FaStar } from "react-icons/fa";
+import { FaRegStar } from "react-icons/fa";
+import { FaRegArrowAltCircleUp } from "react-icons/fa";
+import { FaArrowAltCircleUp } from "react-icons/fa";
+import { FaRegArrowAltCircleDown } from "react-icons/fa";
+import { FaArrowAltCircleDown } from "react-icons/fa";
+import { FaChevronRight } from "react-icons/fa";
+import { FaChevronDown } from "react-icons/fa";
+import addReview from '../components/AddReview';
+import vote from '../components/Vote';
 
-//These are all imports to display the user's reviews -Ethan
+ //These are all imports to display the user's reviews -Ethan
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 import { auth } from '../config/firebase-config'
+
 
 const ReviewCumnock = () => {
 
@@ -28,183 +41,15 @@ const ReviewCumnock = () => {
 
         <div className="content">
           <h1>Cumnock Hall Reviews</h1>
-          {/* <div id="reviewBody" className="reviewBody">
-            <div className="reviewPost">
-              <h2 className="username">Bimslow</h2>
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x" />
-              <span className="fa fa-star fa-2x" />
-              <h3 className="reviewText">Gave me food poisoning</h3>
-              <span className="numVotes">6</span>
-              <label className="upvote">
-                <input type="checkbox" name="upvoteCheck" className="upvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-up fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-up fa-2x checked" />
-              </label>
-              <span className="numVotes">6</span>
-              <label className="downvote">
-                <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-down fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-down fa-2x checked" />
-              </label>
-              <label className="expandDetails">
-                <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                View more details&nbsp;&nbsp;     
-                <span className="fas fa-plus unchecked" />
-                <span className="fas fa-minus checked" />
-              </label>
-              <div id="ED" hidden>
-                <hr />
-                Taste:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star" />
-                <span className="fa fa-star" /><br />
-                Quality:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star" />
-                <span className="fa fa-star" /><br />
-                Selection:&nbsp;&nbsp;&nbsp;
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star highlight" />
-                <span className="fa fa-star" />
-                <span className="fa fa-star" /><br />
-                <hr />
-              </div>
-              <div className="comments">
-                <label className="expandComments">
-                  <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                  <span className="expandCommentsHeader">Expand comments</span>
-                  <span className="fas fa-angle-right unchecked" />
-                  <span className="fas fa-angle-down checked" />
-                </label>
-              </div>
-            </div>      
-            <div className="reviewPost">
-              <h2 className="username">Bimslow</h2>
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x" />
-              <span className="fa fa-star fa-2x" />
-              <h3 className="reviewText">Gave me food poisoning</h3>
-              <label className="upvote">
-                <input type="checkbox" name="upvoteCheck" className="upvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-up fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-up fa-2x checked" />
-              </label>
-              <label className="downvote">
-                <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-down fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-down fa-2x checked" />
-              </label>
-              <label className="expandDetails">
-                <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                View more details         
-                <span className="fas fa-plus " />
-              </label>
-              <br />
-              <div className="comments">
-                <label className="expandComments">
-                  <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                  <span className="expandCommentsHeader">Expand comments</span>
-                  <span className="fas fa-angle-right unchecked" />
-                  <span className="fas fa-angle-down checked" />
-                </label>  
-              </div>
-            </div> 
-            <div className="reviewPost">
-              <h2 className="username">Bimslow</h2>
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x" />
-              <span className="fa fa-star fa-2x" />
-              <h3 className="reviewText">Gave me food poisoning</h3>
-              <label className="upvote">
-                <input type="checkbox" name="upvoteCheck" className="upvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-up fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-up fa-2x checked" />
-              </label>
-              <label className="downvote">
-                <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-down fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-down fa-2x checked" />
-              </label>
-              <label className="expandDetails">
-                <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                View more details         
-                <span className="fas fa-plus " />
-              </label>
-              <br />
-              <div className="comments">
-                <label className="expandComments">
-                  <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                  <span className="expandCommentsHeader">Expand comments</span>
-                  <span className="fas fa-angle-right unchecked" />
-                  <span className="fas fa-angle-down checked" />
-                </label>
-              </div>
-            </div> 
-            <div className="reviewPost">
-              <h2 className="username">Bimslow</h2>
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x highlight" />
-              <span className="fa fa-star fa-2x" />
-              <span className="fa fa-star fa-2x" />
-              <h3 className="reviewText">Gave me food poisoning</h3>
-              <label className="upvote">
-                <input type="checkbox" name="upvoteCheck" className="upvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-up fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-up fa-2x checked" />
-              </label>
-              <label className="downvote">
-                <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" />          
-                <span className="far fa-arrow-alt-circle-down fa-2x unchecked" />
-                <span className="fas fa-arrow-alt-circle-down fa-2x checked" />
-              </label>
-              <label className="expandDetails">
-                <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                View more details         
-                <span className="fas fa-plus " />
-              </label>
-              <br />
-              <div className="comments">
-                <label className="expandComments">
-                  <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" />   
-                  <span className="expandCommentsHeader">Expand comments</span>
-                  <span className="fas fa-angle-right unchecked" />
-                  <span className="fas fa-angle-down checked" />
-                </label>
-              </div> */}
+          
 
 
                 <div>{reviewLists.map((review) => {
                     if (review.location == "Cumnock MarketPlace" ) {
                     return (
-                    <div className="reviewPost"> 
-                        <hr></hr>
-                        <div className="reviewHeader">
-                        <div className="title">
-                            <span>
-                            <h5>{review.currentTime}</h5>
-                            <h2>{review.title}</h2>
-                            </span>
-                        </div>
-                        </div>
-                        <span>Ratings: Overall-{review.overallRating} Taste-{review.tasteRating} Quality-{review.qualityRating} Selection-{review.selectionRating}</span>
-                        <hr></hr>
-                        <div className="reviewTextContainer"> {review.reviewText} </div>
-                        <h4>By: {review.author.name}</h4>
-                        <hr></hr>
-                    </div>
+                      <div className="reviewPost">                    
+                      { addReview(review.author.name, review.overallRating, review.tasteRating, review.qualityRating, review.selectionRating, review.reviewText, 7, 3, 'erm', review.id, review.currentTime, review.title) }
+                  </div>
                     );
                 }})} 
               </div>
