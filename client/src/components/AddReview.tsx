@@ -128,9 +128,10 @@ function addReview(username: any, overallStars: any, tStars: any, qStars: any, s
      {5 <= sStars ? (<FaStar size={24} className='highlight'/>) : (<FaRegStar size={24}/>)} 
      </div>
      
-     </div><hr/><br/>
+     {/* </div> */}
+     {/* <hr/><br/> */}
 
-      <div className='votesDiv'>
+      {/* <div className='votesDiv'>
       <span className="numVotes" id="numUpvotes' + postId +'">   {upvoteChecked ? (numUpvotes + 1) : (numUpvotes)} </span>
       <label className="upvote">
       <input type="checkbox" name="upvoteCheck" className="voteCheckbox" id= {upId} onChange={upvoteOnChange}/>        
@@ -148,7 +149,7 @@ function addReview(username: any, overallStars: any, tStars: any, qStars: any, s
          <input type="checkbox" name="expandDetailsCheck" className="expandDetailsCheckbox" onChange={commentsOnChange}/>
          <span className="expandCommentsHeader">Expand comments&nbsp;&nbsp;</span>
          {commentsChecked ? (<FaChevronDown/>) : (<FaChevronRight/>)}
-     </label>
+     </label> */}
  </div>
  </div>    
      )
