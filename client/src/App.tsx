@@ -18,10 +18,11 @@ import './config/firebase-config';
 // import './App.css'
 import './components/cssStyles/cssHome.css'
 
+import $ from 'jquery';
 
-// import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
-// import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
-// import { doc, setDoc } from "firebase/firestore"; 
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
+import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
+import { doc, setDoc } from "firebase/firestore"; 
 
 
 function App() {
