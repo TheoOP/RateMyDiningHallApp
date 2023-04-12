@@ -18,11 +18,7 @@ import './config/firebase-config';
 // import './App.css'
 import './components/cssStyles/cssHome.css'
 
-import $ from 'jquery';
-
-import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from 'firebase/auth'
-import { addDoc, collection, getFirestore } from 'firebase/firestore/lite'
-import { doc, setDoc } from "firebase/firestore"; 
+import ResetRatings from './pages/ResetRatings';
 
 
 function App() {
@@ -56,7 +52,8 @@ function App() {
           <Route path="/ReviewSouth" element={<ReviewSouth />} />
           <Route path="/Review" element={<Review isAuth = {isAuth}/>} />
           <Route path='*' element={<Error404 isAuth = {isAuth} />} />
-
+          {/* Add this Route component to handle the resetratings URL */}
+          <Route path="/resetratings" element={<ResetRatings/>} />
         </Routes>
        
         {isVisible && (
@@ -67,6 +64,7 @@ function App() {
       
         
       </div>
+
     </BrowserRouter>
 
   )

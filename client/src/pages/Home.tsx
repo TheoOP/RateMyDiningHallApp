@@ -86,38 +86,10 @@ const Home = () => {
           <br />
           <br />
           {otherCards}
-{/* 
-  
-          <DiningHallCard 
-          image = {CumImg} 
-          // height = {300}
-          name =  {locationLists[0]?.name}
-          rating = {locationLists[0]?.dailyrating}
-          ratingCount = {locationLists[0]?.dailyratingcount}
-          location = {locationLists[0]?.location}
-          /> */}
-          <br />
-          <br />
-{/* 
-          <DiningHallCard 
-          image = {ICCDiningImg} 
-          // height = {300}
-          name =  "Inn & Conference Dining"
-          rating = {4.1}
-          ratingCount = {42}
-          location = "Downtown Lowell"
-          />
+
           <br />
           <br />
 
-          <DiningHallCard 
-          image = {SouthCampusImg} 
-          // height = {300}
-          name =  "South Campus Dining Commmons"
-          rating = {4.3}
-          ratingCount = {99}
-          location = "Downtown Lowell"
-          /> */}
           <br />
           <br />
 
