@@ -25,7 +25,7 @@ jobs:
         working-directory: .
         shell: bash
       - name: Setup Firebase
-        uses: firebase-action/setup-firebase@v1
+        uses: firebase-action/setup-firebase@v2
         with:
           firebase-version: '9.6.1'
           config: ${{ secrets.FIREBASE_CONFIG }}
