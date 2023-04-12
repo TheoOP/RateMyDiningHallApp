@@ -1,8 +1,8 @@
-import firebase from 'firebase/app';
+// import firebase from 'firebase/app';
 import "firebase/analytics";
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore'; //I had to change this from firestore/lite to firestore for getting firestore data
-import { getStorage, ref } from "firebase/storage";
+import { getFirestore } from 'firebase/firestore'; //I had to change this from firestore/lite to firestore for getting firestore data
+// import { getStorage, ref } from "firebase/storage";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
 // Follow this pattern to import other Firebase services
@@ -14,6 +14,8 @@ const firebaseConfig = {
   authDomain: "dailydininghallraterv2.firebaseapp.com",
   projectId: "dailydininghallraterv2",
   storageBucket: "dailydininghallraterv2.appspot.com",
+  privateKey: process.env.FIREBASE_PRIVATE_KEY,
+  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
   messagingSenderId: "628069530534",
   appId: "1:628069530534:web:07cc4e91db428f68b5ad67",
   measurementId: "G-D0BHGKB7WC"
@@ -25,11 +27,3 @@ const app = initializeApp(firebaseConfig);
 export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const provider = new GoogleAuthProvider();
-
-// Get a list of cities from your database
-// async function getCities(db) {
-//   const citiesCol = collection(db, 'cities');
-//   const citySnapshot = await getDocs(citiesCol);
-//   const cityList = citySnapshot.docs.map(doc => doc.data());
-//   return cityList;
-// }
