@@ -13,8 +13,25 @@ jobs:
         with:
           node-version: '16'
       - run: npm install
-      - run: npm run reset-ratings
+      - name: Run Reset Ratings
         env:
           FIREBASE_PROJECT_ID: ${{ secrets.FIREBASE_PROJECT_ID }}
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
+        run: |
+          npm run build
+          node dist/reset-ratings.js
+        working-directory: .
+        shell: bash
+      - name: Setup Firebase
+        uses: firebase-action/setup-firebase@v1
+        with:
+          firebase-version: '9.6.1'
+          config: ${{ secrets.FIREBASE_CONFIG }}
+      - name: Deploy to Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only functions
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
