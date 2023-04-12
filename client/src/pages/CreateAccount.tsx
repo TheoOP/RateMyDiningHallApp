@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import "../components/cssStyles/cssCreateAccount.module.css"
 import { GoogleAuthProvider, getAuth, signInWithPopup, signOut, onAuthStateChanged } from '@firebase/auth';
 

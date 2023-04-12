@@ -1,4 +1,3 @@
-import React from 'react'
 import '../components/cssStyles/cssMap.module.css'
 
 const Map = () => {

@@ -1,4 +1,3 @@
-import React from 'react'
 import ReviewForm from '../components/ReviewForm';
 import "../components/cssStyles/cssReview.css"
 

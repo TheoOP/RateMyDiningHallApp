@@ -1,15 +1,14 @@
-import React, {useState , useEffect } from 'react';
-import $ from 'jquery';
+import {useState , useEffect } from 'react';
 import '../components/cssStyles/cssFoxReview.module.css'
 import '../components/cssStyles/reviewPage.css'
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
-import { FaRegArrowAltCircleUp } from "react-icons/fa";
-import { FaArrowAltCircleUp } from "react-icons/fa";
-import { FaRegArrowAltCircleDown } from "react-icons/fa";
-import { FaArrowAltCircleDown } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa";
+// import { FaRegArrowAltCircleUp } from "react-icons/fa";
+// import { FaArrowAltCircleUp } from "react-icons/fa";
+// import { FaRegArrowAltCircleDown } from "react-icons/fa";
+// import { FaArrowAltCircleDown } from "react-icons/fa";
+// import { FaChevronRight } from "react-icons/fa";
+// import { FaChevronDown } from "react-icons/fa";
 
 function addReview(username: any, overallStars: any, tStars: any, qStars: any, sStars: any, reviewText: any, numUpvotes: any, numDownvotes: any, comments: any, postId: any, time: any, title: any){
    /* var [upvoteChecked, upvoteSetChecked] = useState(false);   

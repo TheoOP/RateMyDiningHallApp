@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { getDocs, doc, updateDoc, setDoc, collection } from 'firebase/firestore';
+import { getDocs, doc, updateDoc, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 
 interface Location {
@@ -7,7 +7,7 @@ interface Location {
   name: string;
   dailyrating: number;
   dailyratingcount: number;
-  address: string;
+  location: string;
 }
 
 const ResetRatings = () => {

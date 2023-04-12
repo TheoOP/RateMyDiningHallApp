@@ -1,7 +1,7 @@
 import { Rating } from '@mui/material';
 import { auth } from '../config/firebase-config'
 
-import React, { useState, useEffect } from 'react'; //These are all imports to display the user's reviews -Ethan
+import { useState, useEffect } from 'react'; //These are all imports to display the user's reviews -Ethan
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 

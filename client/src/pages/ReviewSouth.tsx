@@ -2,21 +2,20 @@ import React, {useState , useEffect } from 'react';
 import $ from 'jquery';
 import '../components/cssStyles/cssFoxReview.module.css'
 import '../components/cssStyles/reviewPage.css'
-import { FaStar } from "react-icons/fa";
-import { FaRegStar } from "react-icons/fa";
-import { FaRegArrowAltCircleUp } from "react-icons/fa";
-import { FaArrowAltCircleUp } from "react-icons/fa";
-import { FaRegArrowAltCircleDown } from "react-icons/fa";
-import { FaArrowAltCircleDown } from "react-icons/fa";
-import { FaChevronRight } from "react-icons/fa";
-import { FaChevronDown } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa";
+// import { FaRegStar } from "react-icons/fa";
+// import { FaRegArrowAltCircleUp } from "react-icons/fa";
+// import { FaArrowAltCircleUp } from "react-icons/fa";
+// import { FaRegArrowAltCircleDown } from "react-icons/fa";
+// import { FaArrowAltCircleDown } from "react-icons/fa";
+// import { FaChevronRight } from "react-icons/fa";
+// import { FaChevronDown } from "react-icons/fa";
 import addReview from '../components/AddReview';
-import vote from '../components/Vote';
+// import vote from '../components/Vote';
 
  //These are all imports to display the user's reviews -Ethan
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
-import { auth } from '../config/firebase-config'
 
 
 const ReviewSouth = () => {

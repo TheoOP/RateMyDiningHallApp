@@ -1,14 +1,11 @@
-import React from 'react'
 import { useState, useEffect } from 'react';
-import { getDocs, setDoc, collection } from 'firebase/firestore';
+import { getDocs, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import '../components/cssStyles/cssHome.css'
-import reactLogo from './assets/react.svg'
 import UmlLogoIcon from '../assets/UmlLogoIcon.svg'
 import LocationPin from '../assets/LocationPin.svg'
-import PrimarySearchAppBar from '../components/SearchBar'
 import TopRatedCard from '../components/TopRatedCard'
 import FoxImg from '../assets/FoxDiningHall.png'
 import CumImg from '../assets/CumnockMarketPlace.png'
@@ -17,7 +14,6 @@ import SouImg from '../assets/SouthCampusDining.jpg'
 
 
 import DiningHallCard from '../components/DiningHallCard'
-import { log } from 'console';
 
 const Home = () => {
 

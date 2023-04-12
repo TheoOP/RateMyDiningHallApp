@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { addDoc,getDoc, doc, updateDoc, increment, collection } from 'firebase/firestore';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { db, auth } from "../config/firebase-config"

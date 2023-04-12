@@ -1,4 +1,3 @@
-import React from 'react'
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from "./pages/Home"
@@ -17,8 +16,6 @@ import './config/firebase-config';
 
 // import './App.css'
 import './components/cssStyles/cssHome.css'
-
-import ResetRatings from './pages/ResetRatings';
 
 
 function App() {
@@ -53,7 +50,7 @@ function App() {
           <Route path="/Review" element={<Review isAuth = {isAuth}/>} />
           <Route path='*' element={<Error404 isAuth = {isAuth} />} />
           {/* Add this Route component to handle the resetratings URL */}
-          <Route path="/resetratings" element={<ResetRatings/>} />
+          {/* <Route path="/resetratings" element={<ResetRatings/>} /> */}
         </Routes>
        
         {isVisible && (

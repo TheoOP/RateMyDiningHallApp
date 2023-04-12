@@ -1,6 +1,5 @@
-import React from 'react'
-import StarIcon from '../assets/StarIcon.svg'
-import FourStarIcon from '../assets/FourStarIcon.svg'
+// import StarIcon from '../assets/StarIcon.svg'
+// import FourStarIcon from '../assets/FourStarIcon.svg'
 import FourPointFiveStarIcon from '../assets/FourPointFiveStarIcon.svg'
 import RedLocationPin from '../assets/RedLocationPin.svg'
 
