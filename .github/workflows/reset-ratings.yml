@@ -28,10 +28,11 @@ jobs:
         with:
           firebase-version: '9.6.1'
           config: ${{ secrets.FIREBASE_CONFIG }}
+          service-account: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only functions
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
