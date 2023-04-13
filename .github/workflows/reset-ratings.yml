@@ -22,7 +22,7 @@ jobs:
         run: |
           npm run build
           node dist/reset-ratings.js
-        working-directory: ./RateMyDiningHallApp
+        working-directory: ./client
         shell: bash
       - name: Setup Firebase
         uses: w9jds/firebase-action@v11.24.1
