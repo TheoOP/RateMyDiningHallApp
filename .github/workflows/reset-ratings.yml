@@ -21,8 +21,8 @@ jobs:
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
         run: |
           npm run build
-          node dist/reset-ratings.js
-        working-directory: ./RateMyDiningHallApp
+          node dist/ResetRatings.ts
+        working-directory: ../client
         shell: bash
       - name: Setup Firebase
         uses: w9jds/firebase-action@v11.24.1
