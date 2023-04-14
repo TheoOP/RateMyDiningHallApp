@@ -20,9 +20,10 @@ jobs:
           FIREBASE_PRIVATE_KEY: ${{ secrets.FIREBASE_PRIVATE_KEY }}
           FIREBASE_CLIENT_EMAIL: ${{ secrets.FIREBASE_CLIENT_EMAIL }}
         run: |
+          cd client
           npm run build
           node dist/ResetRatings.ts
-        working-directory: ../client
+        working-directory: ./client
         shell: bash
       - name: Setup Firebase
         uses: w9jds/firebase-action@v11.24.1
