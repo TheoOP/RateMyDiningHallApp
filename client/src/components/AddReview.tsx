@@ -121,7 +121,9 @@ function addReview(username: any, overallStars: any, tStars: any, qStars: any, s
          <span className="expandCommentsHeader">Expand comments&nbsp;&nbsp;</span>
          {commentsChecked ? (<FaChevronDown/>) : (<FaChevronRight/>)}
      </label> */}
-      {vote(numUpvotes, numDownvotes, postId, upvoteUsers, downvoteUsers, userId)}
+     <br/><br/><br/>
+     <br/><br/><br/>
+      { vote(numUpvotes, numDownvotes, postId, upvoteUsers, downvoteUsers, userId)}
  </div>
  </div>    
      )
