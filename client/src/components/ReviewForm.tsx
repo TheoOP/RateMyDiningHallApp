@@ -63,7 +63,9 @@ export default function ReviewForm({ isAuth }) {
       location,
       currentTime,
       author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
-      votes: {upvotes: 0, downvotes: 0}
+      votes: {upvotes: 0, downvotes: 0},
+      upvoteUsers: [],
+      downvoteUsers: []
     });
       // Calculate the new daily rating based on the review rating
       
