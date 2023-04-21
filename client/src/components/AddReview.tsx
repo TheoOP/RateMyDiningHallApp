@@ -3,6 +3,7 @@ import '../components/cssStyles/cssFoxReview.module.css'
 import '../components/cssStyles/reviewPage.css'
 import { FaStar } from "react-icons/fa";
 import { FaRegStar } from "react-icons/fa";
+import vote from "../components/Vote"
 // import { FaRegArrowAltCircleUp } from "react-icons/fa";
 // import { FaArrowAltCircleUp } from "react-icons/fa";
 // import { FaRegArrowAltCircleDown } from "react-icons/fa";
@@ -10,7 +11,7 @@ import { FaRegStar } from "react-icons/fa";
 // import { FaChevronRight } from "react-icons/fa";
 // import { FaChevronDown } from "react-icons/fa";
 
-function addReview(username: any, overallStars: any, tStars: any, qStars: any, sStars: any, reviewText: any, numUpvotes: any, numDownvotes: any, comments: any, postId: any, time: any, title: any){
+function addReview(username: any, overallStars: any, tStars: any, qStars: any, sStars: any, reviewText: any, numUpvotes: any, numDownvotes: any,  postId: any, time: any, title: any, upvoteUsers: any, downvoteUsers: any, userId: any){
    /* var [upvoteChecked, upvoteSetChecked] = useState(false);   
    const upvoteOnChange = () => {       
      upvoteSetChecked(!upvoteChecked);    
@@ -37,35 +38,6 @@ function addReview(username: any, overallStars: any, tStars: any, qStars: any, s
        commentsSetChecked(!commentsChecked);    
    }; */
    
-   var upvoteChecked = false;
-   var downvoteChecked = false;
-   var viewDetailsChecked = false;
-   var commentsChecked = false;
-
-
-   const upvoteOnChange = () => {                 
-     if(!upvoteChecked){
-       downvoteChecked = false;
-     }
-     upvoteChecked = !upvoteChecked;
-     console.log('HIT');
-     
-     };
-
-   const downvoteOnChange = () => {                 
-     if(!downvoteChecked){
-       upvoteChecked = false;
-     }
-     downvoteChecked = !downvoteChecked;
-   };
-   
-   const viewDetailsOnChange = () => {       
-     viewDetailsChecked = !viewDetailsChecked;    
-   }; 
-
-   const commentsOnChange = () => {       
-       commentsChecked = !commentsChecked;    
-   };
 
 
 
@@ -149,6 +121,7 @@ function addReview(username: any, overallStars: any, tStars: any, qStars: any, s
          <span className="expandCommentsHeader">Expand comments&nbsp;&nbsp;</span>
          {commentsChecked ? (<FaChevronDown/>) : (<FaChevronRight/>)}
      </label> */}
+      {vote(numUpvotes, numDownvotes, postId, upvoteUsers, downvoteUsers, userId)}
  </div>
  </div>    
      )

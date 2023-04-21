@@ -7,68 +7,119 @@ import { FaArrowAltCircleDown } from "react-icons/fa";
 import { addDoc,getDoc, doc, updateDoc, increment, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 import { auth } from '../config/firebase-config'
+import { Link } from 'react-router-dom'
 
-function vote(numUpvotes: any, numDownvotes: any, postId: any){
-  const [upvoted, setUpvoted] = useState(false);
-  const [downvoted, setDownvoted] = useState(false);
-  const [voteCount, setVoteCount] = useState(numUpvotes - numDownvotes);
+function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any, downvoteUsersP: any, userId: any, ){
+  var upvoteChecked = false;
+   var downvoteChecked = false;
+   var voteCount = (numUpvotes - numDownvotes);
+   var positionUp; //saves position in upvote array if user has already upvoted
+   var positionDown;
 
   const reviewsCollectionRef = collection(db, "reviews")
+
+  //find if user has upvoted or downvoted the post already
+  upvoteUsersP.forEach((element, index) => {
+    if(element == userId){
+      upvoteChecked = true;
+      positionUp = index;
+    }
+  });
+
+  downvoteUsersP.forEach((element, index) => {
+    if(element == userId){
+      downvoteChecked = true;
+      positionDown = index;
+    }
+  });
+
+  console.log("upvoteChecked: " + upvoteChecked);
+
+
+
+  const handleUpvote = () => {                 
+    if(!upvoteChecked){
+      numUpvotes = numUpvotes + 1;
+      upvoteUsersP.push(userId);
+      if(downvoteChecked){
+        numDownvotes = numDownvotes - 1;
+        downvoteUsersP.splice(positionDown, 1);
+      }
+    }
+    else{
+      numUpvotes = numUpvotes - 1;
+      upvoteUsersP.splice(positionUp, 1);
+    }
+
+    const updateUpvotes = async () => {
+      const ticketRef = doc(db, "reviews", postId);
+      
+      await updateDoc(ticketRef,{
+        downvoteUsers: downvoteUsersP,
+        upvoteUsers: upvoteUsersP,
+        votes: {
+          upvotes: numUpvotes,
+          downvotes: numDownvotes,
+        },
+      } );
+    }
+    updateUpvotes();
+  
  
+    };
 
-  const handleUpvote = () => {
-    if (!upvoted) {
-      setVoteCount(voteCount + 1);
-      setUpvoted(true);
-      setDownvoted(false);
-      // update vote count in database
-
-
-      const updateVotes = async () => {
+    const handleDownvote = () => {                 
+      if(!downvoteChecked){
+        numDownvotes = numDownvotes + 1;
+        downvoteUsersP.push(userId);
+        if(upvoteChecked){
+          numUpvotes = numUpvotes - 1;
+          upvoteUsersP.splice(positionUp, 1);
+        }
+      }
+      else{
+        numDownvotes = numDownvotes - 1;
+        downvoteUsersP.splice(positionDown, 1);
+      }
+  
+      const updateDownvotes = async () => {
         const ticketRef = doc(db, "reviews", postId);
+        console.log("updatDownvotes");
         await updateDoc(ticketRef,{
+          downvoteUsers: downvoteUsersP,
+          upvoteUsers: upvoteUsersP,
           votes: {
-            upvotes: numUpvotes + 1,
+            upvotes: numUpvotes,
             downvotes: numDownvotes,
           },
         } );
       }
-    }
-  };
+      updateDownvotes();
+  
+      };
+ 
 
-  const handleDownvote = () => {
-    if (!downvoted) {
-      setVoteCount(voteCount - 1);
-      setUpvoted(false);
-      setDownvoted(true);
-      // update vote count in database
 
-      const updateVotes = async () => {
-        const ticketRef = doc(db, "reviews", postId);
-        await updateDoc(ticketRef, {
-          votes: {
-            upvotes: numUpvotes + 1,
-            downvotes: numDownvotes,
-          },
-        });
-      } 
-    }
-  };
+
 
   // render upvote and downvote buttons
   return(
     <div>
-      <span>{voteCount}</span>
       <span className="numVotes">{numUpvotes} </span>
     <label className="upvote">
+      
       <input type="checkbox" name="upvoteCheck" className="upvoteCheckbox" onChange={handleUpvote}/>        
-      {upvoted ? (<FaArrowAltCircleUp size={42} />) : (<FaRegArrowAltCircleUp size={42} />)}         
+      
+      {upvoteChecked ? (<FaArrowAltCircleUp size={42} />) : (<FaRegArrowAltCircleUp size={42} />)}    
+      
      </label>
 
      <span className="numVotes">{numDownvotes} </span>
     <label className="downvote">
-      <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" onChange={handleDownvote}/>        
-      {downvoted ? (<FaArrowAltCircleDown size={42} />) : (<FaRegArrowAltCircleDown size={42} />)}         
+      <input type="checkbox" name="downvoteCheck" className="downvoteCheckbox" onChange={handleDownvote}/>     
+       
+      {downvoteChecked ? (<FaArrowAltCircleDown size={42} />) : (<FaRegArrowAltCircleDown size={42} />)}        
+     
      </label>
      
     </div>

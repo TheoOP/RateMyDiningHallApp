@@ -14,7 +14,7 @@ import addReview from '../components/AddReview';
 
  //These are all imports to display the user's reviews -Ethan
 import { getDocs, collection } from 'firebase/firestore';
-import { db } from "../config/firebase-config"
+import { db, auth} from "../config/firebase-config"
 
 
 
@@ -53,7 +53,7 @@ const ReviewFox = () => {
                      
                     return (
                     <div className="reviewPost">                   
-                        { addReview(review.author.name, review.overallRating, review.tasteRating, review.qualityRating, review.selectionRating, review.reviewText, 7, 3, 'erm', review.id, review.currentTime, review.title) }
+                        { addReview(review.author.name, review.overallRating, review.tasteRating, review.qualityRating, review.selectionRating, review.reviewText, review.votes.upvotes, review.votes.downvotes, review.id, review.currentTime, review.title, review.upvoteUsers, review.downvoteUsers, auth.currentUser.uid) }
                     </div>
                     );
                 }})}  
