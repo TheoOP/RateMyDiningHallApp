@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { Component, useState , useEffect } from 'react';
 import { addDoc,getDoc, doc, updateDoc, increment, collection } from 'firebase/firestore';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { db, auth } from "../config/firebase-config"
@@ -46,6 +46,8 @@ export default function ReviewForm({ isAuth }) {
   const [selectionRating, setSelectionRating] = React.useState(0); //selection
   const [location, setLocation] = useState("Fox Dining Commons"); //location selection
   const [currentTime, setCurrentTime] = useState(""); //current time
+  const [upvoteUsers, setUpvoteUsers] = useState([]);
+  const [downvoteUsers, setDownvoteUsers] = useState([]); 
 
   const reviewsCollectionRef = collection(db, "reviews")
   const locationsCollectionRef = collection(db, "locations");
@@ -64,8 +66,8 @@ export default function ReviewForm({ isAuth }) {
       currentTime,
       author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
       votes: {upvotes: 0, downvotes: 0},
-      upvoteUsers: [],
-      downvoteUsers: []
+      upvoteUsers,
+      downvoteUsers
     });
       // Calculate the new daily rating based on the review rating
       
