@@ -64,7 +64,7 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
       } );
     }
     updateUpvotes();
-  
+  //window.location.reload(false);
  
     };
 
@@ -95,7 +95,7 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
         } );
       }
       updateDownvotes();
-  
+      //window.location.reload(false);
       };
  
 
@@ -104,7 +104,7 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
 
   // render upvote and downvote buttons
   return(
-    <div>
+    <div className = "votesDiv">
       <span className="numVotes">{numUpvotes} </span>
     <label className="upvote">
       
