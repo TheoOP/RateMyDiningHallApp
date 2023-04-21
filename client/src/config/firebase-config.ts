@@ -14,8 +14,8 @@ const firebaseConfig = {
   authDomain: "dailydininghallraterv2.firebaseapp.com",
   projectId: "dailydininghallraterv2",
   storageBucket: "dailydininghallraterv2.appspot.com",
-  privateKey: process.env.FIREBASE_PRIVATE_KEY,
-  clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+  // privateKey: process.env.FIREBASE_PRIVATE_KEY,
+  // clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
   messagingSenderId: "628069530534",
   appId: "1:628069530534:web:07cc4e91db428f68b5ad67",
   measurementId: "G-D0BHGKB7WC"
