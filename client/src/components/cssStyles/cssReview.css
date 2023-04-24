@@ -38,3 +38,24 @@ font-weight: 500;
 
   
 }
+
+.IndividualComment{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 5%;
+  width: 40%;
+  border: outset 1px blue
+  
+}
+
+.CommentSection {
+  margin-bottom: 35px;
+}
+
+.reviewText {
+  width: 80%;
+}

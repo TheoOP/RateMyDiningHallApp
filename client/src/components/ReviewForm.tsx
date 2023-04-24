@@ -24,6 +24,7 @@ interface IFormInput {
     SelectionRating: Range,
     CommentText: string,
     exampleRequired: string,
+    userComments: string,
   };
 
   const StyledRating = styled(Rating)({
@@ -48,6 +49,7 @@ export default function ReviewForm({ isAuth }) {
   const [currentTime, setCurrentTime] = useState(""); //current time
   const [upvoteUsers, setUpvoteUsers] = useState([]);
   const [downvoteUsers, setDownvoteUsers] = useState([]); 
+  const [userComments, setuserComments] = useState([]); 
 
   const reviewsCollectionRef = collection(db, "reviews")
   const locationsCollectionRef = collection(db, "locations");
@@ -67,7 +69,8 @@ export default function ReviewForm({ isAuth }) {
       author: {name: auth.currentUser.displayName, id: auth.currentUser.uid},
       votes: {upvotes: 0, downvotes: 0},
       upvoteUsers,
-      downvoteUsers
+      downvoteUsers,
+      userComments,
     });
       // Calculate the new daily rating based on the review rating
       

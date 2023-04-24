@@ -63,7 +63,37 @@ h1 {
       margin-bottom: 75px;
   }
   
+  .createComment{
+    width: 50%;
+    height:30px;
+    margin-top:20px;
+    margin-bottom: 20px;
+  }
   
+  .commentButton{
+    
+      background-color: blue; /* Green */
+      border: none;
+      color: white;
+      padding: 7.5px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border: solid black;
+  }
+
+  :hover.commentButton{
+    background-color: white; /* Green */
+      border: none;
+      color: black;
+      padding: 7.5px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border: solid black;
+  }
   
   .highlight {
       color: orange;
@@ -198,4 +228,9 @@ font-size: 24px;
   .edStars{
     display: block;
     float:left;
+  }
+
+  .reviewText {
+    inline-size: 80%;
+    overflow-wrap: break-word;
   }
