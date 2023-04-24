@@ -7,7 +7,7 @@ import { FaArrowAltCircleDown } from "react-icons/fa";
 import { addDoc,getDoc, doc, updateDoc, increment, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 import { auth } from '../config/firebase-config'
-import { Link } from 'react-router-dom'
+import { Link, Routes, Route, useNavigate } from 'react-router-dom'
 
 function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any, downvoteUsersP: any, userId: any, ){
   var upvoteChecked = false;
@@ -15,6 +15,7 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
    var voteCount = (numUpvotes - numDownvotes);
    var positionUp; //saves position in upvote array if user has already upvoted
    var positionDown;
+   var voteNotInteractedWith = true;
 
   const reviewsCollectionRef = collection(db, "reviews")
 
@@ -37,7 +38,8 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
 
 
 
-  const handleUpvote = () => {                 
+  const handleUpvote = () => {              
+    if(voteNotInteractedWith){  
     if(!upvoteChecked){
       numUpvotes = numUpvotes + 1;
       upvoteUsersP.push(userId);
@@ -64,11 +66,13 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
       } );
     }
     updateUpvotes();
+voteNotInteractedWith = false;
   //window.location.reload(false);
- 
+  }
     };
 
-    const handleDownvote = () => {                 
+    const handleDownvote = () => {              
+      if(voteNotInteractedWith){   
       if(!downvoteChecked){
         numDownvotes = numDownvotes + 1;
         downvoteUsersP.push(userId);
@@ -95,7 +99,9 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
         } );
       }
       updateDownvotes();
+      voteNotInteractedWith = false;
       //window.location.reload(false);
+    }
       };
  
 
