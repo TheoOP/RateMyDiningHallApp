@@ -14,6 +14,7 @@ type npm install in both terminals
 
 in client terminal type 
 npm install react-icons --save
+npm install --save react-toastify
 
 once packages are installed
 in both terminals type
