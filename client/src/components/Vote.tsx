@@ -8,6 +8,9 @@ import { addDoc,getDoc, doc, updateDoc, increment, collection } from 'firebase/f
 import { db } from "../config/firebase-config"
 import { auth } from '../config/firebase-config'
 import { Link, Routes, Route, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any, downvoteUsersP: any, userId: any, ){
   var upvoteChecked = false;
@@ -34,7 +37,7 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
     }
   });
 
-  console.log("upvoteChecked: " + upvoteChecked);
+
 
 
 
@@ -67,6 +70,8 @@ function vote(numUpvotes: any, numDownvotes: any, postId: any, upvoteUsersP: any
     }
     updateUpvotes();
 voteNotInteractedWith = false;
+const notifyUp = () => toast("Upvote sent");
+notifyUp();
   //window.location.reload(false);
   }
     };
@@ -88,7 +93,6 @@ voteNotInteractedWith = false;
   
       const updateDownvotes = async () => {
         const ticketRef = doc(db, "reviews", postId);
-        console.log("updatDownvotes");
         await updateDoc(ticketRef,{
           downvoteUsers: downvoteUsersP,
           upvoteUsers: upvoteUsersP,
@@ -100,6 +104,8 @@ voteNotInteractedWith = false;
       }
       updateDownvotes();
       voteNotInteractedWith = false;
+      const notifyDown = () => toast("Downvote sent");
+      notifyDown();
       //window.location.reload(false);
     }
       };
@@ -127,6 +133,7 @@ voteNotInteractedWith = false;
       {downvoteChecked ? (<FaArrowAltCircleDown size={42} />) : (<FaRegArrowAltCircleDown size={42} />)}        
      
      </label>
+     <ToastContainer />
      
     </div>
   );
