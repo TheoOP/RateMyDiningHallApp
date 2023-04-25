@@ -10,6 +10,8 @@ import '../components/cssStyles/reviewPage.css'
 // import { FaChevronRight } from "react-icons/fa";
 // import { FaChevronDown } from "react-icons/fa";
 import addReview from '../components/AddReview';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 // import vote from '../components/Vote';
 
  //These are all imports to display the user's reviews -Ethan
@@ -55,7 +57,11 @@ const ReviewICC = () => {
                       placeholder='This is where you input a comment'/>
                       <button 
                       className= "commentButton"
-                      onClick={() => updateUserComments(review.id)}
+                      onClick={() => {updateUserComments(review.id);
+                        const notifyComments = () => toast("Comment sent");
+                        notifyComments();
+                      }
+                    }
                       >Leave Comment</button>
                           
                         

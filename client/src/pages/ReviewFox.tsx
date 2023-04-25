@@ -11,7 +11,8 @@ import '../components/cssStyles/reviewPage.css'
 // import { FaChevronDown } from "react-icons/fa";
 import addReview from '../components/AddReview';
 // import vote from '../components/Vote';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
  //These are all imports to display the user's reviews -Ethan
  import { addDoc,getDocs, doc, updateDoc, increment, collection, arrayUnion} from 'firebase/firestore';
 import { db, auth} from "../config/firebase-config"
@@ -37,7 +38,7 @@ const ReviewFox = () => {
       const ticketRef = doc(db, "reviews", id);
       await updateDoc(ticketRef, {userComments: arrayUnion(userComment + " -" + auth.currentUser.displayName)});
     }; 
-    
+
     
 
   return (
@@ -61,7 +62,11 @@ const ReviewFox = () => {
                       placeholder='This is where you input a comment'/>
                       <button 
                       className= "commentButton"
-                      onClick={() => updateUserComments(review.id)}
+                      onClick={() => {updateUserComments(review.id);
+                        const notifyComments = () => toast("Comment sent");
+                        notifyComments();
+                      }
+                    }
                       >Leave Comment</button>
                           
                         
