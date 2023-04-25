@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useMatch, useLocation } from 'react-router-dom';
 import Home from "./pages/Home";
 import Navbar from './components/Navbar';
 import Account from './pages/Account';
@@ -21,15 +21,12 @@ function App() {
 
   useEffect(() => {
     setIsAuth(localStorage.getItem('authToken') ? true : false);
-  }, [location]);
+  }, []);
 
   return (
-    <BrowserRouter>
-      {location.pathname !== '/Login' && (
-        <div className="container mt-2" style={{ marginTop: 40 }}>
-          <Navbar />
-        </div>
-      )}
+
+
+
       <div className="App">
         <Routes>
           <Route path="/Home" element={<Home />} />
@@ -45,8 +42,13 @@ function App() {
           <Route path="/Review" element={<Review isAuth={isAuth} />} />
           <Route path="*" element={<Error404 isAuth={isAuth} />} />
         </Routes>
+        {location.pathname !== '/' && (
+        <div className="container mt-2" style={{ marginTop: 40 }}>
+          <Navbar />
+        </div>
+      )}
       </div>
-    </BrowserRouter>
+        
   );
 }
 

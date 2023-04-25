@@ -22,7 +22,7 @@ const Account = ({setIsAuth} : any) => {
     signOut(auth).then(() =>{
       setIsAuth(false);
       localStorage.clear();
-      navigate("/login");
+      navigate("/");
       // window.location.pathname ='/login'
     })
   }
