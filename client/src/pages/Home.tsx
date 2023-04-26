@@ -71,7 +71,10 @@ const Home = () => {
           
           <h2 className='TopRatedHeader'>Top Rated Today</h2>
           <TopRatedCard 
-          image = {FoxImg} 
+          image={topLocation?.name.toLowerCase() === "fox dining commons" ? FoxImg :
+          topLocation?.name.toLowerCase() === "cumnock marketplace" ? CumImg :
+          topLocation?.name.toLowerCase() === "inn & conference dining" ? ICCImg :
+          topLocation?.name.toLowerCase() === "south campus dining commons" ? SouImg : ''}
           // height = {300}
           name =  {topLocation?.name}
           rating = {topLocation?.dailyrating}
