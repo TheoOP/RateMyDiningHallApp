@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const [isOpen, setOpen] = useState(false);
   return (
-    <div>
       
 
       <nav
@@ -59,7 +58,6 @@ const Navbar = () => {
         </div>
 
       </nav>
-    </div>
     
   );
 };

@@ -43,7 +43,7 @@ const Home = () => {
   //   // create a card for each location in the filtered array
     const otherCards = otherLocations.map((location, index) => (
 
-        <TopRatedCard
+        <DiningHallCard
           image={location.name.toLowerCase() === "fox dining commons" ? FoxImg :
           location.name.toLowerCase() === "cumnock marketplace" ? CumImg :
           location.name.toLowerCase() === "inn & conference dining" ? ICCImg :
@@ -62,14 +62,15 @@ const Home = () => {
       <div className="content">
         <h1>      
         <img className='LocationPin' src={LocationPin} height={45} alt="Uml Logo Icon" />
-        <img className='HeaderIcon' src={UmlLogoIcon} height={45} alt="Uml Logo Icon" /> UMass Lowell</h1>
+        <img className='HeaderIcon' src={UmlLogoIcon} height={45} alt="Uml Logo Icon" /> UMass Lowell
+        </h1>
         
         {/* <PrimarySearchAppBar /> */}
         <br />
         <div className='mainBody'> 
           
           <h2 className='TopRatedHeader'>Top Rated Today</h2>
-          <DiningHallCard 
+          <TopRatedCard 
           image = {FoxImg} 
           // height = {300}
           name =  {topLocation?.name}
@@ -77,7 +78,8 @@ const Home = () => {
           ratingCount = {topLocation?.dailyratingcount}
           location = "East Campus"
           />
-          
+          <br />
+          <br />
           <h2 className='NearbyDiningHallsHeader'>Nearby Dining Halls</h2>
           <br />
           <br />
