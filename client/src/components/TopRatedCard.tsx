@@ -44,7 +44,7 @@ const TopRatedCard = (props: TopRatedCardProps) => {
             <div className='TopRatedCardSubText'>
                 <img className='StarIcon' src={FourPointFiveStarIcon} height={15} alt="Uml Logo Icon" />
 
-                {props.rating}
+                {Math.round(props.rating * 100)/100}
                 
                 ({props.ratingCount}+ Ratings)
                 <img className='RedLocationPinIcon' src={RedLocationPin} height={20} alt="Red Location Pin Icon" />
