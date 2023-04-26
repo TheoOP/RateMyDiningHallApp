@@ -14,7 +14,7 @@ import addReview from '../components/AddReview';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
  //These are all imports to display the user's reviews -Ethan
- import { addDoc,getDocs, doc, updateDoc, increment, collection, arrayUnion} from 'firebase/firestore';
+ import {query, orderBy, addDoc,getDocs, doc, updateDoc, increment, collection, arrayUnion} from 'firebase/firestore';
 import { db, auth} from "../config/firebase-config"
 
 
@@ -27,7 +27,8 @@ const ReviewFox = () => {
   
     useEffect(() => {
       const getReviews = async() => {
-        const data = await getDocs(reviewsCollectionRef);
+        //const data = await getDocs(reviewsCollectionRef);
+        const data = await getDocs(query(reviewsCollectionRef, orderBy('currentTime', 'desc')));
         setReviewList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
       };
     
