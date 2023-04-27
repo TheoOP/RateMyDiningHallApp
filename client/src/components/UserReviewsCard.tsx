@@ -2,7 +2,7 @@ import { Rating } from '@mui/material';
 import { auth } from '../config/firebase-config'
 
 import { useState, useEffect } from 'react'; //These are all imports to display the user's reviews -Ethan
-import { getDocs, collection } from 'firebase/firestore';
+import {query, orderBy, getDocs, collection } from 'firebase/firestore';
 import { db } from "../config/firebase-config"
 
 const UserReviewsCard = () => {
@@ -11,7 +11,8 @@ const [reviewLists, setReviewList] = useState<Array<any>>([]);
 
   useEffect(() => {
     const getReviews = async() => {
-      const data = await getDocs(reviewsCollectionRef);
+      //const data = await getDocs(reviewsCollectionRef);
+      const data = await getDocs(query(reviewsCollectionRef, orderBy('currentTime', 'desc')));
       setReviewList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
   
