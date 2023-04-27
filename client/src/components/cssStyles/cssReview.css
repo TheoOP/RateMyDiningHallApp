@@ -31,6 +31,33 @@ font-weight: 500;
   text-align: top;
 }
 
+.submitReviewClass{
+    
+  background-color: blue; /* Green */
+  border: none;
+  color: white;
+  padding: 7.5px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border: solid black;
+  margin-bottom: 5px;
+}
+
+:hover.submitReviewClass{
+  background-color: white; /* Green */
+    border: none;
+    color: black;
+    padding: 7.5px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border: solid black;
+    margin-bottom: 5px;
+}
+
 .reviewTextContainer
 {
   inline-size: 60%;
@@ -48,7 +75,8 @@ font-weight: 500;
   padding-right: 10px;
   margin-left: 5%;
   width: 40%;
-  border: outset 1px blue
+  border: outset 1px blue;
+  overflow-wrap: break-word;
   
 }
 
@@ -58,4 +86,25 @@ font-weight: 500;
 
 .reviewText {
   width: 80%;
+}
+
+.review{
+  margin: 5mm 5mm 5mm 5mm;
+  border: solid 0.5mm black;
+  padding-left: 2mm;
+  padding-right: 2mm;
+  border-radius: 5mm;
+  
+}
+
+.accountPastReviewsNote {
+  display: table;
+  margin: 0 auto;
+  margin-top: 10mm;
+border: dashed black;
+border-left: 0mm;
+border-right: 0mm;
+border-top: 0mm;
+padding: 1mm 1mm 0mm 1mm;
+
 }

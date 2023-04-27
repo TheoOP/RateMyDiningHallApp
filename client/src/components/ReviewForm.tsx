@@ -197,7 +197,7 @@ export default function ReviewForm({ isAuth }) {
       required/>
       <br />
 
-      <input type="submit" placeholder="Submit Review" onClick={createReview} />
+      <input className="submitReviewClass" type="submit" placeholder="Submit Review" onClick={createReview} />
     </form>
   );
 }

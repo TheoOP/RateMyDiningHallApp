@@ -55,7 +55,7 @@ const [reviewLists, setReviewList] = useState<Array<any>>([]);
         if (review.author.name == auth.currentUser?.displayName) {
         return (
           <div className="review"> 
-            <hr></hr>
+            
             <div className="reviewHeader">
               <div className="title">
                 <span>
@@ -69,7 +69,7 @@ const [reviewLists, setReviewList] = useState<Array<any>>([]);
             <hr></hr>
             <div className="reviewTextContainer"> {review.reviewText} </div>
             <h4>By: {review.author.name}</h4>
-            <hr></hr>
+            
           </div>
           );
         }})}  

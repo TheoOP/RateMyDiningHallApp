@@ -86,6 +86,7 @@ const ProfileCard = () => {
                 }
             })()}
           </div>
+          <span className="accountPastReviewsNote">Past Reviews made by this account:</span>
       </div>
 
           

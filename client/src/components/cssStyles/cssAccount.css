@@ -22,7 +22,7 @@
 .userProfile{
     width: 35%;
     height: 40%;
-    border: 1px solid aliceblue;
+    border: 5px outset rgba(240, 248, 255, 0.677);
     background-color: aliceblue;
     border-radius: 2%;
 }
